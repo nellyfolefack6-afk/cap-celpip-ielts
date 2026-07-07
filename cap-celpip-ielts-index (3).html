@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cap CELPIP & IELTS — by Nelly Folefack</title>
+<meta name="description" content="Cap CELPIP & IELTS — the smart prep platform for Canada's English tests. Listening, Reading, Writing, Speaking with an AI examiner. Created by Nelly Folefack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Public+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--marine:#0F2A44;--marine2:#16395C;--or:#C9A227;--orL:#F0E1B4;--orBg:#FBF4DF;--ivoire:#FBF8F1;--blanc:#fff;--encre:#1C2B3A;--gris:#5B6B7C;--vert:#1E7D53;--vertL:#E6F4EC;--rouge:#B3402F;--rougeL:#FBEAE6;--violet:#6C3483;--violetL:#F5EEF8;--bleu:#1B4F72;--bleuL:#EBF5FB;--celpip:#C0392B;--celpipL:#FDEDEC;--ielts:#1F6F8B;--ieltsL:#E8F4F8;--ligne:#E7E2D6;--police-titre:'Fraunces',serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Public Sans',sans-serif;background:var(--ivoire);color:var(--encre);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--police-titre)}
+.app{max-width:760px;margin:0 auto;min-height:100vh;padding-bottom:86px}
+.topbar{background:linear-gradient(135deg,var(--marine),var(--marine2));color:#fff;padding:16px 18px;position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px}
+.topbar .logo{width:40px;height:40px;border-radius:11px;border:2px solid var(--or);display:flex;align-items:center;justify-content:center;font-family:var(--police-titre);font-weight:800;color:var(--or);font-size:.7rem;flex-shrink:0}
+.topbar .t1{font-family:var(--police-titre);font-weight:900;font-size:1.02rem;line-height:1.1}
+.topbar .t2{font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--orL)}
+.contenu{padding:16px 14px 30px;animation:app .25s ease}
+@keyframes app{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.carte{background:var(--blanc);border:1.5px solid var(--ligne);border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(15,42,68,.04)}
+.sur{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or);font-weight:800;margin-bottom:4px}
+.titre-vue{font-size:1.45rem;font-weight:900;color:var(--marine);margin-bottom:4px}
+.note{font-size:.85rem;color:var(--gris);margin-bottom:14px}
+.btn{display:inline-block;border:none;border-radius:12px;padding:12px 20px;font-size:.92rem;font-weight:800;cursor:pointer;font-family:'Public Sans',sans-serif;text-decoration:none;text-align:center}
+.btn-marine{background:var(--marine);color:#fff}.btn-or{background:var(--or);color:var(--marine)}
+.btn-blanc{background:#fff;border:2px solid var(--marine);color:var(--marine)}
+.btn-bloc{display:block;width:100%}
+.gcarte{display:flex;gap:12px;align-items:center;cursor:pointer;transition:transform .12s}
+.gcarte:active{transform:scale(.985)}
+.gico{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.gtxt{flex:1}.gtit{font-size:.98rem;font-weight:800;color:var(--marine)}
+.gdesc{font-size:.78rem;color:var(--gris);margin-top:1px}.gfle{color:var(--or);font-weight:900}
+.barre{height:8px;background:#EDE8DB;border-radius:5px;overflow:hidden}
+.barre>div{height:100%;background:linear-gradient(90deg,var(--or),#E0BE4E);border-radius:5px;transition:width .4s}
+.stat{background:var(--blanc);border:1.5px solid var(--ligne);border-radius:14px;padding:14px;text-align:center}
+.stat .v{font-family:var(--police-titre);font-size:1.5rem;font-weight:900;color:var(--marine)}
+.stat .l{font-size:.68rem;color:var(--gris);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-top:2px}
+.navbas{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1.5px solid var(--ligne);display:flex;max-width:760px;margin:0 auto;z-index:60}
+.navbas button{flex:1;background:none;border:none;padding:9px 2px 10px;font-size:.6rem;font-weight:800;color:#9AA7B4;cursor:pointer;font-family:'Public Sans',sans-serif}
+.navbas button .i{display:block;font-size:19px;margin-bottom:2px}
+.navbas button.actif{color:var(--marine)}
+.pill{display:inline-block;background:var(--orBg);border:1px solid var(--or);color:#8a6d12;border-radius:20px;padding:4px 11px;font-size:.7rem;font-weight:800;margin:0 6px 6px 0}
+.champ{margin-bottom:12px}
+.champ label{display:block;font-size:.68rem;font-weight:800;color:#333;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.champ input,.champ select{width:100%;border:2px solid #DDD8CC;border-radius:10px;padding:12px 13px;font-size:.95rem;outline:none;background:#fff;font-family:'Public Sans',sans-serif}
+.chat-zone{background:#fff;border:1.5px solid var(--ligne);border-radius:14px;padding:12px;min-height:230px;max-height:52vh;overflow-y:auto;margin-bottom:10px}
+.bulle{max-width:88%;padding:9px 12px;border-radius:13px;font-size:.86rem;line-height:1.55;margin-bottom:8px;white-space:pre-wrap}
+.bulle.moi{background:var(--marine);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.bulle.ia{background:#F2EFE7;color:var(--encre);border-bottom-left-radius:4px}
+.portail{position:fixed;inset:0;z-index:200;background:linear-gradient(150deg,var(--marine) 0%,var(--marine2) 100%);display:flex;align-items:center;justify-content:center;padding:22px;text-align:center;overflow-y:auto}
+.tabtest{display:flex;gap:8px;margin-bottom:14px}
+.tabtest button{flex:1;border-radius:12px;padding:11px;font-size:.86rem;font-weight:800;cursor:pointer;border:2px solid var(--ligne);background:#fff;color:var(--gris)}
+.tabtest button.on-celpip{border-color:var(--celpip);background:var(--celpipL);color:var(--celpip)}
+.tabtest button.on-ielts{border-color:var(--ielts);background:var(--ieltsL);color:var(--ielts)}
+textarea{width:100%;border:2px solid #DDD8CC;border-radius:10px;padding:12px;font-size:.92rem;outline:none;font-family:'Public Sans',sans-serif;resize:vertical;min-height:150px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="logo">C&amp;I</div>
+    <div style="flex:1">
+      <div class="t1">Cap CELPIP &amp; IELTS</div>
+      <div class="t2">by Nelly Folefack</div>
+    </div>
+    <button onclick="goTab('coach')" style="background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:20px;padding:7px 13px;font-size:.72rem;font-weight:800;cursor:pointer">🤖 AI Examiner</button>
+  </div>
+  <div id="zone" class="contenu"></div>
+  <div class="navbas" id="navbas"></div>
+</div>
+
+<script>
+/* ═══════════ CAP CELPIP & IELTS — CORE ═══════════ */
+var API_URL="/.netlify/functions/claude";
+var SYNC_URL="https://script.google.com/macros/s/AKfycbxLkgoxAW5M9-Nvgwh40sDJyXGGmu1AQpjFIiYzd2tDp64Xru5ojjLjZHf9Scr03zcIKQ/exec";
+var CODES=["NELLYF-CI-2026","NF-CI-001","NF-CI-002","NF-CI-003","NF-CI-004","NF-CI-005","NF-CI-006","NF-CI-007","NF-CI-008","NF-CI-009","NF-CI-010","NF-CI-011","NF-CI-012","NF-CI-013","NF-CI-014","NF-CI-015","NF-CI-016","NF-CI-017","NF-CI-018","NF-CI-019","NF-CI-020"];
+var WHATSAPP="https://wa.me/17058964060?text=Hi%20Nelly%2C%20I%20would%20like%20to%20join%20Cap%20CELPIP%20%26%20IELTS!";
+var EMAIL="mailto:ucbh.communaute@outlook.com?subject=Cap%20CELPIP%20%26%20IELTS%20Registration";
+var LIEN_RESERVATION="https://calendar.app.google/iwir4r8N8osTrGd49";
+var C={navy:"#0F2A44",gold:"#C9A227",goldL:"#FBF4DF",mid:"#5B6B7C",dark:"#1C2B3A",celpip:"#C0392B",ielts:"#1F6F8B"};
+
+var S={code:null,screen:"password",tab:"home",test:"celpip",sub:null,
+  prenom:"",nom:"",courriel:"",pays:"",target:"CLB 9",examDate:"",dateDebut:"",dateFin:"",profilOk:false,
+  lessonDone:{},practiceDone:{},writingCount:0,speakingCount:0,
+  coachChat:[],coachBusy:false,coachMode:null,tempsEtude:0,joursEtude:[],
+  wrId:null,wrText:"",wrBusy:false,wrFeedback:null,spId:null};
+var SAVE_KEYS=["prenom","nom","courriel","pays","target","examDate","dateDebut","dateFin","profilOk","lessonDone","practiceDone","writingCount","speakingCount","tempsEtude","joursEtude","test"];
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function card(i){return '<div class="carte">'+i+'</div>';}
+function cle(){return "capci-"+(S.code||"anon");}
+function sauver(){try{var d={};SAVE_KEYS.forEach(function(k){d[k]=S[k];});localStorage.setItem(cle(),JSON.stringify(d));}catch(e){}}
+function charger(){try{var b=localStorage.getItem(cle());if(b){var d=JSON.parse(b);SAVE_KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k];});}}catch(e){}}
+function setState(o){for(var k in o)S[k]=o[k];sauver();render();}
+function suivi(ev,detail){try{fetch(SYNC_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({app:"Cap CELPIP & IELTS",code:S.code||"",prenom:S.prenom||"",nom:S.nom||"",courriel:S.courriel||"",niveau:S.target||"",event:ev,detail:detail||"",date:new Date().toISOString()})}).catch(function(){});}catch(e){}}
+async function nellyAPI(body){var r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});if(!r.ok)throw new Error("API "+r.status);return await r.json();}
+function getEnVoice(){var vs=window.speechSynthesis?window.speechSynthesis.getVoices():[];return vs.filter(function(v){return v.lang==='en-CA';})[0]||vs.filter(function(v){return v.lang==='en-US';})[0]||vs.filter(function(v){return v.lang&&v.lang.indexOf('en')===0;})[0]||null;}
+function speakEn(t){try{if(!window.speechSynthesis)return;window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);var v=getEnVoice();if(v)u.voice=v;u.lang="en-CA";u.rate=.95;window.speechSynthesis.speak(u);}catch(e){}}
+setInterval(function(){if(S.screen==="app"&&!document.hidden){S.tempsEtude=(S.tempsEtude||0)+1;var d=new Date().toISOString().slice(0,10);if((S.joursEtude||[]).indexOf(d)<0)S.joursEtude=(S.joursEtude||[]).concat([d]);if(S.tempsEtude%60===0)sauver();}},60000);
+
+/* ═══════════ NAV ═══════════ */
+var TABS=[{id:"home",icon:"🏠",label:"Home"},{id:"prepare",icon:"📚",label:"Prepare"},{id:"exam",icon:"📝",label:"Mock Exam"},{id:"coach",icon:"🤖",label:"Examiner"},{id:"dash",icon:"📊",label:"Progress"}];
+function goTab(t){if(window.speechSynthesis)window.speechSynthesis.cancel();if(typeof stopExamTimer==="function")stopExamTimer();S.tab=t;S.sub=null;S.wrId=null;S.spId=null;S.examView=null;sauver();render();window.scrollTo(0,0);}
+function goSub(s){S.sub=s;sauver();render();window.scrollTo(0,0);}
+function navBas(){return TABS.map(function(t){return '<button class="'+(S.tab===t.id?'actif':'')+'" onclick="goTab(\''+t.id+'\')"><span class="i">'+t.icon+'</span>'+t.label+'</button>';}).join("");}
+function retour(l,fn){return '<button onclick="'+fn+'" style="background:#fff;border:1.5px solid var(--ligne);color:var(--gris);border-radius:10px;padding:8px 14px;font-size:.78rem;font-weight:800;cursor:pointer;margin-bottom:14px">← '+l+'</button>';}
+function testSwitch(){
+  return '<div class="tabtest">'+
+  '<button class="'+(S.test==="celpip"?"on-celpip":"")+'" onclick="S.test=\'celpip\';sauver();render()">🇨🇦 CELPIP</button>'+
+  '<button class="'+(S.test==="ielts"?"on-ielts":"")+'" onclick="S.test=\'ielts\';sauver();render()">🌐 IELTS</button></div>';
+}
+
+/* ═══════════ PORTAL / BLOCKED / PROFILE ═══════════ */
+function renderPortail(){
+  return '<div class="portail"><div style="max-width:460px;width:100%">'+
+  '<div style="width:70px;height:70px;border-radius:16px;border:3px solid var(--or);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-family:var(--police-titre);font-weight:800;color:var(--or);font-size:1rem">C&amp;I</div>'+
+  '<h1 style="color:#fff;font-size:1.7rem;font-weight:900;margin-bottom:2px">Cap CELPIP &amp; IELTS</h1>'+
+  '<div style="font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orL);margin-bottom:8px">by Nelly Folefack</div>'+
+  '<p style="color:#B9C6D6;font-size:.88rem;margin-bottom:22px">Prove your English. Unlock Canada. 🇨🇦</p>'+
+  '<div style="background:#fff;border-radius:18px;padding:24px 20px;text-align:left">'+
+  '<div style="font-weight:900;color:var(--marine);margin-bottom:4px">🔒 Secure access</div>'+
+  '<div style="font-size:.8rem;color:var(--gris);margin-bottom:14px">Enter your personal access code to start your preparation.</div>'+
+  '<div style="font-size:.65rem;font-weight:800;color:#333;letter-spacing:.06em;margin-bottom:5px">MY ACCESS CODE</div>'+
+  '<input id="pwd" type="text" placeholder="Ex: NF-CI-001" autocomplete="off" onkeydown="if(event.key===\'Enter\')validerCode()" style="width:100%;border:2px solid #DDD8CC;border-radius:10px;padding:13px;font-size:1rem;text-align:center;letter-spacing:1px;outline:none">'+
+  '<div id="pwdErr" style="display:none;background:var(--rougeL);color:var(--rouge);border-radius:8px;padding:8px 11px;font-size:.78rem;margin-top:8px">Code not recognized. Please check with Nelly.</div>'+
+  '<button class="btn btn-marine btn-bloc" style="margin-top:12px" onclick="validerCode()">Enter →</button></div>'+
+  '<p style="color:#8FA3B8;font-size:.78rem;margin:20px 0 10px">No access code yet? Join Cap CELPIP &amp; IELTS 🌍</p>'+
+  '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">'+
+  '<a href="'+WHATSAPP+'" target="_blank" style="background:#25D366;color:#fff;text-decoration:none;border-radius:10px;padding:11px 17px;font-weight:800;font-size:.85rem">💬 WhatsApp</a>'+
+  '<a href="'+EMAIL+'" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;border-radius:10px;padding:11px 17px;font-weight:800;font-size:.85rem">✉️ Email</a></div>'+
+  '<div style="margin-top:24px;font-size:.66rem;color:rgba(255,255,255,.4)">© 2026 Nelly Folefack — All rights reserved</div>'+
+  '</div></div>';
+}
+function validerCode(){
+  var v=(document.getElementById("pwd").value||"").trim().toUpperCase();
+  if(CODES.indexOf(v)<0){document.getElementById("pwdErr").style.display="block";return;}
+  S.code=v;try{localStorage.setItem("capci-session",v);}catch(e){}
+  charger();suivi("connexion","code validated");
+  S.screen=S.profilOk?"app":"profile";
+  if(statutPeriode()!=="ok")S.screen="blocked";
+  render();
+}
+function statutPeriode(){try{var now=new Date();if(S.dateDebut&&now<new Date(S.dateDebut+"T00:00:00"))return "avant";var f=finEffective();if(f&&now>new Date(f.date+"T"+f.heure))return "apres";}catch(e){}return "ok";}
+function finEffective(){if(S.examDate)return {date:S.examDate,heure:"23:00:00",src:"exam"};if(S.dateFin)return {date:S.dateFin,heure:"23:59:59",src:"manual"};return null;}
+function changerCode(){try{localStorage.removeItem("capci-session");}catch(e){}S.code=null;S.screen="password";render();}
+function renderBlocked(){
+  var st=statutPeriode();var f=finEffective();
+  return '<div class="portail"><div style="max-width:440px;width:100%">'+
+  '<div style="font-size:46px;margin-bottom:12px">'+(st==="avant"?"⏳":"🏁")+'</div>'+
+  '<h1 style="color:#fff;font-size:1.5rem;font-weight:900;margin-bottom:12px">Cap CELPIP &amp; IELTS</h1>'+
+  '<div style="background:#fff;border-radius:18px;padding:24px 20px">'+
+  '<div style="font-weight:900;color:var(--marine);margin-bottom:8px">'+(st==="avant"?"Your access is coming":"Access ended")+'</div>'+
+  '<div style="font-size:.86rem;color:var(--gris);line-height:1.6">'+(st==="avant"
+    ?'Hi '+esc(S.prenom)+'! Your preparation starts on <strong>'+esc(S.dateDebut)+'</strong>.'
+    :'Your access ended on <strong>'+esc((f||{}).date||"")+'</strong>'+((f||{}).src==="exam"?' at 11 p.m. — exam day. We wish you great success! 🍀':'')+'. Contact Nelly to extend it.')+'</div>'+
+  '<div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">'+
+  '<a href="'+WHATSAPP+'" target="_blank" class="btn" style="background:#25D366;color:#fff">💬 WhatsApp</a>'+
+  '<button class="btn btn-blanc" onclick="changerCode()">↩ Another code</button></div></div></div></div>';
+}
+function renderProfilGate(){
+  return '<div style="padding:16px 14px 30px">'+
+  '<div class="sur">Welcome</div><div class="titre-vue">'+(S.profilOk?'My profile':'Create your profile')+'</div>'+
+  '<div class="note">This personalizes your prep and sets your access period.</div>'+
+  card('<div class="sur" style="color:var(--marine)">👤 Your information</div>'+
+  '<div class="champ" style="margin-top:10px"><label>First name *</label><input id="f_prenom" value="'+esc(S.prenom)+'"></div>'+
+  '<div class="champ"><label>Last name *</label><input id="f_nom" value="'+esc(S.nom)+'"></div>'+
+  '<div class="champ"><label>Email</label><input id="f_courriel" type="email" value="'+esc(S.courriel)+'"></div>'+
+  '<div class="champ"><label>Country</label><input id="f_pays" value="'+esc(S.pays)+'" placeholder="Canada, Cameroon, France…"></div>')+
+  card('<div class="sur" style="color:var(--marine)">🎯 My goal</div>'+
+  '<div class="champ" style="margin-top:10px"><label>Which test?</label><select id="f_test">'+
+  '<option value="celpip" '+(S.test==="celpip"?"selected":"")+'>CELPIP</option>'+
+  '<option value="ielts" '+(S.test==="ielts"?"selected":"")+'>IELTS</option></select></div>'+
+  '<div class="champ"><label>Target score</label><select id="f_target">'+
+  ["CLB 7","CLB 8","CLB 9","CLB 10","IELTS 6.0","IELTS 6.5","IELTS 7.0","IELTS 7.5","IELTS 8.0"].map(function(t){return '<option '+(S.target===t?"selected":"")+'>'+t+'</option>';}).join("")+'</select></div>')+
+  card('<div class="sur" style="color:var(--marine)">🗓️ My access period *</div>'+
+  '<div style="font-size:.76rem;color:var(--gris);margin:6px 0 10px">If your exam date is set, access closes that day at 11 p.m. — you prepare right up to test day!</div>'+
+  '<div class="champ"><label>Start date *</label><input id="f_debut" type="date" value="'+esc(S.dateDebut)+'"></div>'+
+  '<div class="champ"><label>Exam date (if booked)</label><input id="f_exam" type="date" value="'+esc(S.examDate)+'"></div>'+
+  '<div class="champ"><label>End date (if exam not booked yet)</label><input id="f_fin" type="date" value="'+esc(S.dateFin)+'"></div>')+
+  '<button class="btn btn-or btn-bloc" onclick="sauverProfil()">✓ Save and start</button>'+
+  (S.profilOk?'<button class="btn btn-blanc btn-bloc" style="margin-top:10px" onclick="S.screen=\'app\';render()">← Back</button>':'')+'</div>';
+}
+function sauverProfil(){
+  var g=function(id){var e=document.getElementById(id);return e?e.value.trim():"";};
+  S.prenom=g("f_prenom");S.nom=g("f_nom");S.courriel=g("f_courriel");S.pays=g("f_pays");
+  S.test=g("f_test")||"celpip";S.target=g("f_target")||"CLB 9";S.dateDebut=g("f_debut");S.examDate=g("f_exam");S.dateFin=g("f_fin");
+  if(!S.prenom||!S.nom||!S.dateDebut||(!S.examDate&&!S.dateFin)){alert("Please fill in: first name, last name, start date, and exam date OR end date.");return;}
+  S.profilOk=true;sauver();
+  var f=finEffective();
+  suivi("profil_enregistre","Test "+S.test.toUpperCase()+" · target "+S.target+" · Access "+S.dateDebut+" → "+(f?f.date+(f.src==="exam"?" 11pm (exam)":""):"?")+" · "+(S.pays||""));
+  S.screen=(statutPeriode()==="ok")?"app":"blocked";S.tab="home";render();
+}
+
+/* ═══════════ HOME ═══════════ */
+function renderHome(){
+  var nL=Object.keys(S.lessonDone||{}).length,nP=Object.keys(S.practiceDone||{}).length;
+  return '<div class="sur">Welcome'+(S.prenom?', '+esc(S.prenom):'')+'</div>'+
+  '<div class="titre-vue">Prove your English. Unlock Canada.</div>'+
+  '<div class="note">Your smart prep for CELPIP & IELTS — with an AI examiner. 🇨🇦</div>'+
+  testSwitch()+
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">'+
+  '<button class="btn btn-or" onclick="goTab(\'prepare\')">▶ Start preparing</button>'+
+  '<button class="btn btn-marine" onclick="goTab(\'dash\')">📊 My progress</button>'+
+  '<button class="btn btn-blanc" onclick="goTab(\'exam\')">📝 Mock exam</button>'+
+  '<button class="btn btn-blanc" onclick="goTab(\'coach\')">🤖 AI Examiner</button></div>'+
+  card('<div style="display:flex;gap:14px;text-align:center">'+
+  '<div style="flex:1"><div style="font-family:var(--police-titre);font-size:1.4rem;font-weight:900;color:var(--marine)">'+nL+'</div><div style="font-size:.66rem;color:var(--gris);font-weight:700;text-transform:uppercase">Lessons</div></div>'+
+  '<div style="flex:1"><div style="font-family:var(--police-titre);font-size:1.4rem;font-weight:900;color:var(--marine)">'+(S.writingCount||0)+'</div><div style="font-size:.66rem;color:var(--gris);font-weight:700;text-transform:uppercase">Writings</div></div>'+
+  '<div style="flex:1"><div style="font-family:var(--police-titre);font-size:1.4rem;font-weight:900;color:var(--marine)">'+Math.round((S.tempsEtude||0)/60*10)/10+'h</div><div style="font-size:.66rem;color:var(--gris);font-weight:700;text-transform:uppercase">Study</div></div></div>')+
+  hubCard("📝","Mock Exam","Full timed test with instant CLB/band score","goTab('exam')","#FDEDEC")+
+  hubCard("📝","Mock Exam","Full timed test with instant CLB/band score","goTab('exam')","#FDEDEC")+
+  hubCard(S.test==="celpip"?"🎧":"🎧","The 4 skills","Listening · Reading · Writing · Speaking","goTab('prepare')",C.goldL)+
+  hubCard("✍️","Writing Lab","Get your writing scored by the AI examiner","goTab('writing')","#EAF1FB")+
+  hubCard("🎤","Speaking Lab","Practice speaking tasks with instant feedback","goTab('prepare');goSub('speaking')","#F5EEF8")+
+  hubCard("🎤","Live coaching with Nelly","Real mock exams, online","goTab('prepare');goSub('live')","#FBEAE6")+
+  card('<div class="sur">Created by Nelly Folefack</div>'+
+  '<div style="font-size:.8rem;color:var(--gris);margin:6px 0 10px">The complete suite for your Canadian journey:</div>'+
+  '<div class="pill">🎓 Cap CELPIP & IELTS</div><div class="pill">🇬🇧 AngloVie</div><div class="pill">🇫🇷 FrancoVie</div><div class="pill">📘 Cap TEF</div>')+
+  '<div style="text-align:center;font-size:.68rem;color:var(--gris);margin-top:8px">© 2026 Nelly Folefack — All rights reserved · 🌍</div>';
+}
+function hubCard(ico,tit,desc,fn,bg){return '<div class="carte gcarte" onclick="'+fn+'"><div class="gico" style="background:'+bg+'">'+ico+'</div><div class="gtxt"><div class="gtit">'+tit+'</div><div class="gdesc">'+desc+'</div></div><div class="gfle">→</div></div>';}
+
+/* ═══════════ DASHBOARD ═══════════ */
+function renderDash(){
+  var nL=Object.keys(S.lessonDone||{}).length,totL=LESSONS.length;
+  var pct=Math.min(100,Math.round(((nL+(S.writingCount||0)*2+(S.speakingCount||0)*2)/(totL+16))*100));
+  var streak=(S.joursEtude||[]).length;
+  var badges=[["🎬","First step",nL+(S.writingCount||0)>0],["📖","5 lessons",nL>=5],["✍️","First writing",(S.writingCount||0)>=1],["✍️","3 writings",(S.writingCount||0)>=3],["🎤","First speaking",(S.speakingCount||0)>=1],["🔥","7 study days",streak>=7],["📚","All lessons",nL>=totL&&totL>0],["⭐","Halfway",pct>=50]];
+  return '<div class="sur">Progress</div><div class="titre-vue">📊 My preparation</div>'+
+  '<div class="note">Target: '+esc(S.target)+' · '+esc(S.prenom)+' '+esc(S.nom)+(S.examDate?' · exam '+esc(S.examDate):'')+'</div>'+
+  card('<div style="display:flex;justify-content:space-between;font-size:.78rem;font-weight:800;color:var(--gris);margin-bottom:6px"><span>OVERALL PROGRESS</span><span style="color:var(--marine)">'+pct+' %</span></div><div class="barre"><div style="width:'+pct+'%"></div></div>')+
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">'+
+  '<div class="stat"><div class="v">'+nL+'/'+totL+'</div><div class="l">Lessons</div></div>'+
+  '<div class="stat"><div class="v">'+(S.writingCount||0)+'</div><div class="l">Writings scored</div></div>'+
+  '<div class="stat"><div class="v">'+(S.speakingCount||0)+'</div><div class="l">Speaking tasks</div></div>'+
+  '<div class="stat"><div class="v">'+streak+'</div><div class="l">Study days</div></div></div>'+
+  card('<div class="sur">🏅 Badges</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">'+
+  badges.map(function(b){return '<div style="flex:1;min-width:130px;background:'+(b[2]?'var(--orBg)':'#F4F2EC')+';border:1.5px solid '+(b[2]?'var(--or)':'#E5E1D5')+';border-radius:12px;padding:10px;text-align:center;opacity:'+(b[2]?'1':'.45')+'"><div style="font-size:20px">'+b[0]+'</div><div style="font-size:.66rem;font-weight:800;color:var(--marine);margin-top:2px">'+b[1]+'</div></div>';}).join("")+'</div>')+
+  card('<div class="sur" style="color:var(--violet)">🤖 AI recommendation</div><div style="font-size:.88rem;margin-top:4px">'+(
+    (S.writingCount||0)<1?"Start with one Writing task — the AI examiner will score it against "+esc(S.target)+" and show you exactly what to improve.":
+    nL<totL?"Keep going through the skill lessons — then book a live mock exam with Nelly to push toward "+esc(S.target)+"!":
+    "Excellent work! Book a full mock exam with Nelly to simulate the real test-day conditions.")+'</div>')+
+  '<button class="btn btn-blanc btn-bloc" onclick="S.screen=\'profile\';render()">👤 Edit my profile</button>'+
+  '<button class="btn btn-blanc btn-bloc" style="margin-top:8px;color:var(--rouge);border-color:var(--rouge)" onclick="if(confirm(\'Log out of this code?\'))changerCode()">↩ Change access code</button>';
+}
+
+/* ═══════════ LIVE ═══════════ */
+function renderLive(){
+  return retour("Prepare","goSub(null)")+
+  '<div class="sur">Live coaching</div><div class="titre-vue">🎤 Mock exams with Nelly</div>'+
+  '<div class="note">Full mock CELPIP/IELTS speaking and writing, online, with personalized feedback — wherever you are 🌍</div>'+
+  card('<div style="font-weight:800;color:var(--marine);margin-bottom:8px">Book your session</div>'+
+  '<a class="btn btn-marine btn-bloc" href="'+LIEN_RESERVATION+'" target="_blank" onclick="suivi(\'rdv_clic_reservation\',\'booking opened\')">📅 See available times</a>'+
+  '<div style="text-align:center;font-size:.72rem;color:var(--gris);margin:10px 0">or</div>'+
+  '<a class="btn btn-bloc" style="background:#25D366;color:#fff" href="'+WHATSAPP+'" target="_blank">💬 Message Nelly on WhatsApp</a>');
+}
+
+/* ═══════════ RENDER ROOT ═══════════ */
+function render(){
+  var zone=document.getElementById("zone"),nav=document.getElementById("navbas");
+  if(S.screen==="password"){zone.innerHTML=renderPortail();nav.innerHTML="";return;}
+  if(S.screen==="blocked"){zone.innerHTML=renderBlocked();nav.innerHTML="";return;}
+  if(S.screen==="profile"){zone.innerHTML=renderProfilGate();nav.innerHTML="";return;}
+  var b="";
+  if(S.tab==="home")b=renderHome();
+  else if(S.tab==="prepare")b=renderPrepare();
+  else if(S.tab==="exam")b=renderExam();
+  else if(S.tab==="writing")b=renderWriting();
+  else if(S.tab==="coach")b=renderCoach();
+  else if(S.tab==="dash")b=renderDash();
+  zone.innerHTML=b;nav.innerHTML=navBas();
+}
+window.addEventListener("load",function(){
+  var sess=null;try{sess=localStorage.getItem("capci-session");}catch(e){}
+  if(sess&&CODES.indexOf(sess)>=0){S.code=sess;charger();S.screen=!S.profilOk?"profile":(statutPeriode()==="ok"?"app":"blocked");}
+  render();
+  if(window.speechSynthesis)window.speechSynthesis.onvoiceschanged=function(){};
+});
+</script>
+<script>
+/* ═══════════ LESSONS — the 4 skills × 2 tests ═══════════ */
+var LESSONS=[
+/* ---------- CELPIP ---------- */
+{id:"cp_listen",test:"celpip",skill:"Listening",icon:"🎧",color:"#C0392B",bg:"#FDEDEC",niveau:"All",
+ titre:"CELPIP Listening — the strategy",
+ pts:["6 parts, ~47–55 min, on computer. You HEAR each audio only ONCE — so listen actively and take quick notes.",
+ "Parts get harder: Problem Solving → Daily Life → Information → News → Discussion → Viewpoints. The last parts are longer and more abstract.",
+ "Golden rule: read the question options WHILE the audio plays when possible, and never dwell on a missed answer — move on immediately or you'll miss the next one."],
+ tips:["Note names, numbers and dates as you hear them.","Listen for the speaker's ATTITUDE (agree / disagree / unsure), not just facts.","In 'Viewpoints', identify the main opinion first, then the supporting reasons."],
+ quiz:[{q:"In CELPIP Listening, how many times do you hear each audio?",o:["Once","Twice","Three times","As many as you want"],b:0,x:"Only once — active listening + notes are essential."},
+ {q:"The safest habit when you miss an answer:",o:["Move on immediately","Rewind","Panic","Guess the longest option"],b:0,x:"Dwelling costs you the next question."}]},
+{id:"cp_read",test:"celpip",skill:"Reading",icon:"📖",color:"#C0392B",bg:"#FDEDEC",niveau:"All",
+ titre:"CELPIP Reading — the strategy",
+ pts:["4 parts, ~55–60 min: Correspondence → Diagram/Information → Information → Viewpoints. Time management is everything.",
+ "Skim first for the main idea, then scan for the specific detail each question asks. Don't read every word.",
+ "Watch for 'distractor' options that are true but don't answer the exact question asked."],
+ tips:["Budget ~13 minutes per part — wear a watch mentally.","For the email-reply part, match the tone (formal/informal) of the original.","Underline keywords in the question before scanning."],
+ quiz:[{q:"Best first move on a CELPIP reading passage:",o:["Skim for the main idea","Read every word slowly","Answer before reading","Start from the last line"],b:0,x:"Skim → scan → answer."},
+ {q:"A 'distractor' option is:",o:["true but not the answer to THIS question","always false","the longest one","a spelling trap"],b:0,x:"Match the exact question, not just any true fact."}]},
+{id:"cp_write",test:"celpip",skill:"Writing",icon:"✍️",color:"#C0392B",bg:"#FDEDEC",niveau:"All",
+ titre:"CELPIP Writing — Task 1 (email) & Task 2 (survey)",
+ pts:["Task 1: write an EMAIL (~150–200 words, 27 min). Read the situation, cover ALL bullet points, match the tone (formal or friendly).",
+ "Task 2: respond to a SURVEY / give your opinion (~150–200 words, 26 min). Pick ONE option, state it clearly, give 2–3 solid reasons.",
+ "Scored on: Content, Vocabulary, Readability, Task Fulfilment. Clear paragraphs and connective words (First, Moreover, In conclusion) lift your band."],
+ tips:["Task 1: greeting → purpose → cover each bullet → polite closing.","Task 2: opinion → reason 1 → reason 2 → short conclusion.","Don't over-write: quality and coverage beat length."],
+ quiz:[{q:"CELPIP Writing Task 1 is:",o:["an email","an essay","a graph description","a letter of complaint only"],b:0,x:"Task 1 = email; Task 2 = survey/opinion."},
+ {q:"To score well in Task 2 you should:",o:["pick one option and give clear reasons","list every possible view","stay neutral with no opinion","write as much as possible"],b:0,x:"Commit to one position with 2–3 reasons."}]},
+{id:"cp_speak",test:"celpip",skill:"Speaking",icon:"🎤",color:"#C0392B",bg:"#FDEDEC",niveau:"All",
+ titre:"CELPIP Speaking — the 8 tasks",
+ pts:["8 tasks, ~15–20 min, recorded at a microphone (no human). You get short prep time (30–60 s) then speak (60–90 s).",
+ "The tasks: 1 Advice · 2 Personal experience · 3 Describe a scene · 4 Predictions · 5 Compare & persuade · 6 Difficult situation · 7 Express opinions · 8 Unusual situation.",
+ "Keep talking until time is up — silence hurts. Structure fast: point → reason → example."],
+ tips:["Use your full prep time to jot 3 keywords.","Speak naturally, don't memorize scripts — examiners hear it.","For 'Difficult situation' (Task 6): stay polite, propose a solution."],
+ quiz:[{q:"CELPIP Speaking is assessed by:",o:["a computer recording (no human live)","a live examiner","two examiners","a written test"],b:0,x:"You record answers at a microphone."},
+ {q:"If you finish your point early, you should:",o:["add an example and keep talking","stop and wait silently","repeat the question","say 'that's all'"],b:0,x:"Fill the time — silence lowers the score."}]},
+/* ---------- IELTS ---------- */
+{id:"ie_listen",test:"ielts",skill:"Listening",icon:"🎧",color:"#1F6F8B",bg:"#E8F4F8",niveau:"All",
+ titre:"IELTS Listening — the strategy",
+ pts:["4 sections, ~30 min + 10 min to transfer answers to the sheet. Accents vary (British, Australian, Canadian…).",
+ "Section 1: everyday conversation (form-filling). S2: monologue. S3: academic discussion. S4: lecture. Difficulty rises.",
+ "SPELLING and singular/plural count! 'childrens' or a misspelt name = wrong, even if you heard it right."],
+ tips:["Read the questions during the pauses given before each section.","Write answers as you hear them — don't wait.","Check word limits: 'NO MORE THAN TWO WORDS' means two, not three."],
+ quiz:[{q:"In IELTS Listening, spelling mistakes are:",o:["marked wrong","ignored","half credit","only checked in Section 4"],b:0,x:"Spelling and plural must be correct."},
+ {q:"'NO MORE THAN TWO WORDS' means you can write:",o:["one or two words","exactly two","up to three","a full sentence"],b:0,x:"Respect the word limit strictly."}]},
+{id:"ie_read",test:"ielts",skill:"Reading",icon:"📖",color:"#1F6F8B",bg:"#E8F4F8",niveau:"All",
+ titre:"IELTS Reading — Academic vs General",
+ pts:["3 passages, 40 questions, 60 min, NO extra transfer time — write answers directly. Academic = journal-style texts; General = everyday/workplace texts.",
+ "Question types: True/False/Not Given, matching headings, gap-fill, MCQ. 'Not Given' ≠ False — it means the text simply doesn't say.",
+ "Don't read the whole passage first — read the questions, then scan for keyword locations."],
+ tips:["Spend ~20 min per passage; don't get stuck on one question.","For True/False/Not Given, base it ONLY on the text, not your own knowledge.","Transfer nothing at the end — you write straight onto the answer sheet."],
+ quiz:[{q:"In IELTS Reading, 'Not Given' means:",o:["the text doesn't mention it","it's false","it's true","it's an opinion"],b:0,x:"Not Given = no information either way."},
+ {q:"Time per passage (roughly):",o:["20 minutes","5 minutes","40 minutes","10 minutes"],b:0,x:"60 min ÷ 3 passages = ~20 each."}]},
+{id:"ie_write",test:"ielts",skill:"Writing",icon:"✍️",color:"#1F6F8B",bg:"#E8F4F8",niveau:"All",
+ titre:"IELTS Writing — Task 1 & Task 2",
+ pts:["Task 1 (20 min, 150+ words): Academic = describe a graph/chart/process; General = write a letter. Task 2 (40 min, 250+ words): an essay — worth TWICE Task 1.",
+ "Task 2 essay structure: Introduction (paraphrase + position) → 2 body paragraphs (idea + explain + example) → Conclusion.",
+ "Scored on: Task Achievement, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy. Spend more time on Task 2 — it counts double."],
+ tips:["Task 1 Academic: describe TRENDS and comparisons, not every number.","Task 2: answer ALL parts of the question; a clear position throughout.","Use linking words (however, furthermore, as a result) but don't overstuff."],
+ quiz:[{q:"IELTS Writing Task 2 is worth:",o:["twice as much as Task 1","the same as Task 1","half of Task 1","not scored"],b:0,x:"Task 2 = double weight → spend 40 of the 60 min on it."},
+ {q:"Academic Task 1 asks you to:",o:["describe a graph/chart/process","write an essay","write a letter","give your opinion"],b:0,x:"Academic Task 1 = data description; General Task 1 = a letter."}]},
+{id:"ie_speak",test:"ielts",skill:"Speaking",icon:"🎤",color:"#1F6F8B",bg:"#E8F4F8",niveau:"All",
+ titre:"IELTS Speaking — the 3 parts",
+ pts:["Face-to-face with a REAL examiner, ~11–14 min. Part 1: intro & familiar topics (4–5 min). Part 2: the 'long turn' — speak 1–2 min on a cue card after 1 min prep. Part 3: abstract discussion (4–5 min).",
+ "Scored on: Fluency & Coherence, Lexical Resource, Grammatical Range, Pronunciation. Extend every answer — never just 'yes' or 'no'.",
+ "It's a conversation, not a test of 'correct' opinions — there are no wrong views, only how well you express them."],
+ tips:["Part 2: use your 1-min prep to note who/what/when/why.","Extend answers with reasons and examples (Because… For instance…).","Don't memorize speeches — natural fluency scores higher."],
+ quiz:[{q:"IELTS Speaking Part 2 requires you to:",o:["speak 1–2 min on a cue card","answer yes/no","write an essay","read aloud"],b:0,x:"The 'long turn' after 1 minute of prep."},
+ {q:"IELTS Speaking is with:",o:["a live examiner","a computer","two candidates","a recording"],b:0,x:"Face-to-face — unlike CELPIP's computer format."}]}
+];
+function renderPrepare(){
+  if(S.sub==="live")return renderLive();
+  if(S.sub==="speaking")return renderSpeaking();
+  if(S.sub&&S.sub.indexOf("lesson:")===0)return renderLesson(S.sub.slice(7));
+  var list=LESSONS.filter(function(l){return l.test===S.test;});
+  var isC=S.test==="celpip";
+  return '<div class="sur">Prepare</div><div class="titre-vue">The 4 skills</div>'+
+  '<div class="note">Master the format, then practice. Switch test anytime.</div>'+
+  testSwitch()+
+  card('<div style="background:'+(isC?"var(--celpipL)":"var(--ieltsL)")+';border-radius:12px;padding:12px 14px;margin:-4px 0 4px">'+
+  '<div style="font-weight:900;color:'+(isC?"var(--celpip)":"var(--ielts)")+';font-size:.95rem">'+(isC?"🇨🇦 CELPIP":"🌐 IELTS")+'</div>'+
+  '<div style="font-size:.78rem;color:var(--gris);margin-top:2px">'+(isC
+    ?"100% Canadian · fully on computer · scored in CLB 1–12 · Speaking recorded at a mic."
+    :"International · Academic or General · scored in bands 0–9 · Speaking with a live examiner.")+'</div></div>')+
+  list.map(function(l){
+    var done=S.lessonDone[l.id];
+    return '<div class="carte gcarte" onclick="goSub(\'lesson:'+l.id+'\')">'+
+    '<div class="gico" style="background:'+l.bg+'">'+l.icon+'</div>'+
+    '<div class="gtxt"><div class="gtit">'+l.skill+(done?' ✅':'')+'</div><div class="gdesc">'+esc(l.titre)+'</div></div><div class="gfle">→</div></div>';
+  }).join("")+
+  hubCard("🎤","Speaking Lab","Practice speaking tasks with AI feedback","goSub('speaking')","#F5EEF8")+
+  hubCard("🎤","Live mock exam with Nelly","The real thing, online","goSub('live')","#FBEAE6");
+}
+function renderLesson(id){
+  var l=LESSONS.filter(function(x){return x.id===id;})[0];if(!l)return renderPrepare();
+  var key="lq_"+id;var ans=S._lessonAns||(S._lessonAns={});
+  return retour("Prepare","goSub(null)")+
+  '<div style="background:'+l.bg+';border-radius:14px;padding:14px 16px;margin-bottom:12px">'+
+  '<div style="font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:'+l.color+'">'+(l.test==="celpip"?"CELPIP":"IELTS")+' · '+l.skill+'</div>'+
+  '<div style="font-family:var(--police-titre);font-size:1.25rem;font-weight:900;color:var(--marine);margin-top:2px">'+esc(l.titre)+'</div></div>'+
+  card('<div class="sur">📋 How it works</div>'+l.pts.map(function(p){return '<div style="font-size:.88rem;margin-top:8px;padding-left:14px;border-left:3px solid '+l.color+'">'+esc(p)+'</div>';}).join(""))+
+  card('<div class="sur" style="color:var(--vert)">💡 Winning tips</div>'+l.tips.map(function(t){return '<div style="font-size:.86rem;margin-top:7px">✓ '+esc(t)+'</div>';}).join(""))+
+  card('<div class="sur">🧩 Quick check</div>'+l.quiz.map(function(q,qi){
+    var rep=ans[key+qi];
+    return '<div style="margin-top:10px"><div style="font-size:.9rem;font-weight:700;margin-bottom:6px">'+esc(q.q)+'</div>'+
+    q.o.map(function(o,oi){
+      var st='background:#fff;border:1.5px solid #DDD;color:var(--encre)';
+      if(rep!==undefined){if(oi===q.b)st='background:var(--vertL);border:1.5px solid var(--vert);color:var(--vert)';else if(oi===rep)st='background:var(--rougeL);border:1.5px solid var(--rouge);color:var(--rouge)';else st='background:#fff;border:1.5px solid #EEE;color:var(--gris)';}
+      return '<div onclick="'+(rep===undefined?'lessonRep(\''+key+qi+'\','+oi+','+qi+',\''+id+'\')':'')+'" style="'+st+';border-radius:10px;padding:9px 12px;margin-bottom:5px;font-size:.84rem;cursor:'+(rep===undefined?'pointer':'default')+'">'+esc(o)+'</div>';
+    }).join("")+
+    (rep!==undefined?'<div style="background:'+(rep===q.b?'var(--vertL)':'var(--rougeL)')+';border-radius:8px;padding:7px 10px;font-size:.77rem;color:'+(rep===q.b?'var(--vert)':'var(--rouge)')+'">'+(rep===q.b?'✅ ':'💡 ')+esc(q.x)+'</div>':'')+'</div>';
+  }).join(""))+
+  (S.lessonDone[id]?'<div style="background:var(--vertL);border-radius:12px;padding:12px;text-align:center;font-weight:800;color:var(--vert)">✅ Lesson completed</div>':
+  '<button class="btn btn-or btn-bloc" onclick="terminerLesson(\''+id+'\')">✓ Mark as complete</button>')+
+  (l.skill==="Writing"?'<button class="btn btn-marine btn-bloc" style="margin-top:10px" onclick="goTab(\'writing\')">✍️ Practice this in the Writing Lab →</button>':'')+
+  (l.skill==="Speaking"?'<button class="btn btn-marine btn-bloc" style="margin-top:10px" onclick="goTab(\'prepare\');goSub(\'speaking\')">🎤 Practice this in the Speaking Lab →</button>':'');
+}
+function lessonRep(k,oi,qi,id){(S._lessonAns||(S._lessonAns={}))[k]=oi;render();}
+function terminerLesson(id){S.lessonDone[id]=true;suivi("lecon_terminee",id);sauver();render();}
+
+/* ═══════════ ✍️ WRITING LAB — AI scoring ═══════════ */
+var WRITING_TASKS={
+ celpip:[
+  {id:"cp_w1",t:"Task 1 — Email",time:"27 min · 150–200 words",prompt:"You recently moved into a new apartment and discovered several problems (the heating doesn't work, and the previous tenant left furniture behind). Write an email to your landlord. In your email:\n• explain the problems\n• describe how they affect you\n• say what you would like the landlord to do"},
+  {id:"cp_w2",t:"Task 2 — Survey / Opinion",time:"26 min · 150–200 words",prompt:"Your city is considering making public transit free for everyone. Do you support or oppose this idea? Choose ONE option and explain your choice with clear reasons and examples."}],
+ ielts:[
+  {id:"ie_w1a",t:"Task 1 — Academic (graph)",time:"20 min · 150+ words",prompt:"The chart below shows the number of newcomers settling in three Canadian provinces (Ontario, Quebec, British Columbia) between 2015 and 2025. Summarize the information by selecting and reporting the main features, and make comparisons where relevant. (Describe the trends in your own words — imagine a steady rise in Ontario, a slight fall in Quebec, and a sharp rise then plateau in BC.)"},
+  {id:"ie_w1g",t:"Task 1 — General (letter)",time:"20 min · 150+ words",prompt:"You recently attended a training course that did not meet your expectations. Write a letter to the training organization. In your letter:\n• describe the course you took\n• explain why you were not satisfied\n• say what you would like them to do"},
+  {id:"ie_w2",t:"Task 2 — Essay",time:"40 min · 250+ words",prompt:"Some people believe that immigrants should fully adopt the culture and traditions of their new country. Others believe they should preserve their own culture. Discuss both views and give your own opinion."}]
+};
+function renderWriting(){
+  if(S.wrId)return renderWritingTask();
+  var tasks=WRITING_TASKS[S.test];
+  return '<div class="sur">Writing Lab</div><div class="titre-vue">✍️ Get scored by the AI examiner</div>'+
+  '<div class="note">Write a real task, submit it, and receive an estimated '+(S.test==="celpip"?"CLB":"band")+' score with detailed feedback — like a real rater.</div>'+
+  testSwitch()+
+  tasks.map(function(t){
+    return '<div class="carte gcarte" onclick="S.wrId=\''+t.id+'\';S.wrText=\'\';S.wrFeedback=null;render();window.scrollTo(0,0)">'+
+    '<div class="gico" style="background:'+(S.test==="celpip"?"var(--celpipL)":"var(--ieltsL)")+'">✍️</div>'+
+    '<div class="gtxt"><div class="gtit">'+esc(t.t)+'</div><div class="gdesc">'+esc(t.time)+'</div></div><div class="gfle">→</div></div>';
+  }).join("")+
+  card('<div style="font-size:.8rem;color:var(--gris)">💡 The AI examiner gives an <strong>estimated</strong> score to guide your practice. For an official-style mock with human feedback, book a <strong>live session with Nelly</strong>.</div>');
+}
+function renderWritingTask(){
+  var tasks=WRITING_TASKS[S.test];var t=tasks.filter(function(x){return x.id===S.wrId;})[0];if(!t)return renderWriting();
+  return retour("Writing Lab","S.wrId=null;S.wrFeedback=null;render()")+
+  '<div style="background:'+(S.test==="celpip"?"var(--celpipL)":"var(--ieltsL)")+';border-radius:14px;padding:14px 16px;margin-bottom:12px">'+
+  '<div style="font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:'+(S.test==="celpip"?"var(--celpip)":"var(--ielts)")+'">'+(S.test==="celpip"?"CELPIP":"IELTS")+' Writing</div>'+
+  '<div style="font-family:var(--police-titre);font-size:1.2rem;font-weight:900;color:var(--marine)">'+esc(t.t)+'</div>'+
+  '<div style="font-size:.76rem;color:var(--gris)">'+esc(t.time)+'</div></div>'+
+  card('<div class="sur">📋 Your task</div><div style="font-size:.88rem;margin-top:6px;white-space:pre-wrap;line-height:1.6">'+esc(t.prompt)+'</div>')+
+  '<div class="carte"><div class="sur">✍️ Your answer</div>'+
+  '<textarea id="wrArea" placeholder="Write your response here…" oninput="S.wrText=this.value" style="margin-top:8px">'+esc(S.wrText||"")+'</textarea>'+
+  '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">'+
+  '<span id="wc" style="font-size:.74rem;color:var(--gris)">'+wordCount(S.wrText||"")+' words</span>'+
+  '<button class="btn btn-or" onclick="scoreWriting(\''+t.id+'\')" '+(S.wrBusy?'disabled style="opacity:.5"':'')+'>'+(S.wrBusy?'Scoring…':'🎯 Submit for scoring')+'</button></div></div>'+
+  (S.wrFeedback?card('<div class="sur" style="color:var(--violet)">🤖 AI Examiner feedback</div><div style="font-size:.88rem;margin-top:6px;white-space:pre-wrap;line-height:1.6">'+esc(S.wrFeedback)+'</div>'+
+  '<div style="font-size:.72rem;color:var(--gris);margin-top:10px;border-top:1px solid var(--ligne);padding-top:8px">⚠️ Estimated score for practice guidance only. Book a live mock with Nelly for a full evaluation.</div>'):'');
+}
+function wordCount(t){t=(t||"").trim();return t?t.split(/\s+/).length:0;}
+async function scoreWriting(id){
+  var wc=wordCount(S.wrText);
+  if(wc<40){alert("Write at least 40 words before submitting (aim for the target length!).");return;}
+  var tasks=WRITING_TASKS[S.test];var t=tasks.filter(function(x){return x.id===id;})[0];
+  S.wrBusy=true;render();
+  var sys="You are an experienced "+(S.test==="celpip"?"CELPIP":"IELTS")+" writing examiner. Score the learner's response against the official criteria. "+
+    (S.test==="celpip"?"Give an estimated CLB level (1–12) for this writing.":"Give an estimated band score (0–9, in .5 steps) for this writing.")+
+    " Structure your feedback EXACTLY like this:\n\n📊 ESTIMATED SCORE: [score]\n\n✅ STRENGTHS:\n- [2–3 bullet points]\n\n🔧 TO IMPROVE:\n- [2–3 concrete, specific points with a short example rewrite]\n\n💡 NEXT STEP: [one actionable tip].\n\nBe encouraging but honest. Keep it under 220 words. Answer in English.";
+  var usr="TASK ("+t.t+"):\n"+t.prompt+"\n\nLEARNER'S RESPONSE ("+wc+" words):\n"+S.wrText;
+  try{
+    var data=await nellyAPI({model:"claude-sonnet-4-6",max_tokens:900,system:sys,messages:[{role:"user",content:usr}]});
+    var rep=(data.content||[]).filter(function(c){return c.type==="text";}).map(function(c){return c.text;}).join("").trim()||"(no feedback)";
+    S.wrFeedback=rep;S.writingCount=(S.writingCount||0)+1;sauver();
+    suivi("writing_scored",t.t+" · "+wc+" words");
+  }catch(e){S.wrFeedback="📵 Connection issue ("+(e.message||"error")+"). Please try again in a moment.";}
+  S.wrBusy=false;render();
+}
+
+/* ═══════════ 🎤 SPEAKING LAB ═══════════ */
+var SPEAKING_TASKS={
+ celpip:[
+  {id:"cs1",t:"Task 1 — Giving Advice",prep:"30s prep · 90s speak",prompt:"A friend has been offered a job in another city but is unsure whether to accept. Give them advice on what to consider."},
+  {id:"cs2",t:"Task 2 — Personal Experience",prep:"30s prep · 60s speak",prompt:"Talk about a time you had to adapt to a new place or situation. What happened and how did you handle it?"},
+  {id:"cs5",t:"Task 5 — Compare & Persuade",prep:"60s prep · 60s speak",prompt:"You're choosing between two apartments: one is cheaper but far from work; the other is closer but more expensive. Choose one and persuade your family it's the better choice."},
+  {id:"cs6",t:"Task 6 — Difficult Situation",prep:"60s prep · 60s speak",prompt:"You ordered furniture that arrived damaged. Call the store, explain the problem, and decide what you want them to do."}],
+ ielts:[
+  {id:"is1",t:"Part 1 — Introduction",prep:"no prep · ~30s each",prompt:"Let's talk about where you live. Do you live in a house or an apartment? What do you like about your neighbourhood? Would you like to move in the future? Why?"},
+  {id:"is2",t:"Part 2 — Long Turn (cue card)",prep:"1 min prep · speak 1–2 min",prompt:"Describe a skill you would like to learn. You should say: what the skill is, why you want to learn it, how you would learn it, and explain how it would help you in Canada."},
+  {id:"is3",t:"Part 3 — Discussion",prep:"no prep · ~45s each",prompt:"Let's discuss learning in general. Why do some adults find it hard to learn new skills? Is it better to learn alone or with others? How has technology changed the way people learn?"}]
+};
+function renderSpeaking(){
+  if(S.spId){var t=SPEAKING_TASKS[S.test].filter(function(x){return x.id===S.spId;})[0];if(t)return renderSpeakingTask(t);}
+  var tasks=SPEAKING_TASKS[S.test];
+  return retour("Prepare","goSub(null)")+
+  '<div class="sur">Speaking Lab</div><div class="titre-vue">🎤 Practice speaking</div>'+
+  '<div class="note">Read the task, prepare, then speak your answer out loud. Type or paste what you said and the AI examiner gives feedback.</div>'+
+  testSwitch()+
+  tasks.map(function(t){
+    return '<div class="carte gcarte" onclick="S.spId=\''+t.id+'\';S.wrText=\'\';S.wrFeedback=null;render();window.scrollTo(0,0)">'+
+    '<div class="gico" style="background:#F5EEF8">🎤</div>'+
+    '<div class="gtxt"><div class="gtit">'+esc(t.t)+'</div><div class="gdesc">'+esc(t.prep)+'</div></div><div class="gfle">→</div></div>';
+  }).join("");
+}
+function speakPrompt(){var t=(SPEAKING_TASKS[S.test]||[]).filter(function(x){return x.id===S.spId;})[0];if(t)speakEn(String(t.prompt).replace(/\n/g,' '));}
+function renderSpeakingTask(t){
+  return retour("Speaking Lab","S.spId=null;S.wrFeedback=null;render()")+
+  '<div style="background:#F5EEF8;border-radius:14px;padding:14px 16px;margin-bottom:12px">'+
+  '<div style="font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--violet)">'+(S.test==="celpip"?"CELPIP":"IELTS")+' Speaking</div>'+
+  '<div style="font-family:var(--police-titre);font-size:1.2rem;font-weight:900;color:var(--marine)">'+esc(t.t)+'</div>'+
+  '<div style="font-size:.76rem;color:var(--gris)">'+esc(t.prep)+'</div></div>'+
+  card('<div class="sur">🗣️ Your task</div>'+
+  '<button onclick="speakPrompt()" style="background:#F5EEF8;border:1.5px solid var(--violet);border-radius:8px;padding:6px 12px;font-size:.78rem;font-weight:800;cursor:pointer;margin:8px 0;color:var(--violet)">🔊 Hear the prompt</button>'+
+  '<div style="font-size:.9rem;margin-top:4px;white-space:pre-wrap;line-height:1.6">'+esc(t.prompt)+'</div>')+
+  card('<div class="sur">✍️ What did you say?</div>'+
+  '<div style="font-size:.76rem;color:var(--gris);margin:4px 0 8px">Speak out loud first (use a timer!). Then type or dictate your answer here so the examiner can give feedback on structure and language.</div>'+
+  '<textarea id="wrArea" placeholder="Type or dictate what you said…" oninput="S.wrText=this.value">'+esc(S.wrText||"")+'</textarea>'+
+  '<button class="btn btn-or btn-bloc" style="margin-top:8px" onclick="scoreSpeaking(\''+t.id+'\')" '+(S.wrBusy?'disabled style="opacity:.5"':'')+'>'+(S.wrBusy?'Analyzing…':'🎯 Get examiner feedback')+'</button>')+
+  (S.wrFeedback?card('<div class="sur" style="color:var(--violet)">🤖 AI Examiner feedback</div><div style="font-size:.88rem;margin-top:6px;white-space:pre-wrap;line-height:1.6">'+esc(S.wrFeedback)+'</div>'):'');
+}
+async function scoreSpeaking(id){
+  var wc=wordCount(S.wrText);
+  if(wc<20){alert("Type at least a couple of sentences of what you said!");return;}
+  var t=SPEAKING_TASKS[S.test].filter(function(x){return x.id===id;})[0];
+  S.wrBusy=true;render();
+  var sys="You are an experienced "+(S.test==="celpip"?"CELPIP":"IELTS")+" speaking examiner. The learner practiced a speaking task and typed what they said. Give feedback on Fluency/Coherence, Vocabulary, Grammar, and Task response. Format:\n\n📊 ESTIMATED "+(S.test==="celpip"?"CLB":"BAND")+": [score]\n\n✅ STRENGTHS:\n- [2 points]\n\n🔧 TO IMPROVE:\n- [2–3 concrete points with a better phrasing example]\n\n💡 NEXT STEP: [one tip].\n\nEncouraging, honest, under 200 words, in English.";
+  try{
+    var data=await nellyAPI({model:"claude-sonnet-4-6",max_tokens:800,system:sys,messages:[{role:"user",content:"TASK ("+t.t+"):\n"+t.prompt+"\n\nWHAT THE LEARNER SAID:\n"+S.wrText}]});
+    var rep=(data.content||[]).filter(function(c){return c.type==="text";}).map(function(c){return c.text;}).join("").trim()||"(no feedback)";
+    S.wrFeedback=rep;S.speakingCount=(S.speakingCount||0)+1;sauver();suivi("speaking_practiced",t.t);
+  }catch(e){S.wrFeedback="📵 Connection issue ("+(e.message||"error")+"). Please try again.";}
+  S.wrBusy=false;render();
+}
+
+/* ═══════════ 🤖 AI EXAMINER (chat) ═══════════ */
+var COACH_SYSTEM="You are the AI Examiner of Cap CELPIP & IELTS (created by Nelly Folefack), a Canadian English-test prep app. You help learners prepare for CELPIP and IELTS. You can: explain the test format and scoring (CELPIP = CLB 1–12; IELTS = bands 0–9), correct writing and speaking answers with an estimated score, run practice questions, role-play as an examiner (especially IELTS Speaking Parts 1–3 or CELPIP speaking tasks), and give strategy tips. Always answer in clear English. Be encouraging, specific, and concise (2–6 sentences unless more is needed). When correcting, use 🔧 wrong → correct.";
+function renderCoach(){
+  return '<div class="sur">AI Examiner</div><div class="titre-vue">🤖 Your examiner</div>'+
+  '<div class="note">Ask about the tests, get corrections, or run a mock speaking interview — anytime.</div>'+
+  '<div class="chat-zone" id="coachZone">'+
+  (S.coachChat.length===0?'<div style="text-align:center;color:var(--gris);font-size:.82rem;padding:30px 10px">👋 Hi'+(S.prenom?' '+esc(S.prenom):'')+'! I\u2019m your AI Examiner.<br>Try: “Explain CELPIP scoring”<br>or “Run an IELTS Speaking Part 1 with me.”</div>':
+  S.coachChat.map(function(m){return '<div class="bulle '+(m.role==="user"?"moi":"ia")+'">'+esc(m.content)+'</div>';}).join("")+(S.coachBusy?'<div class="bulle ia" style="color:var(--gris)">…</div>':''))+'</div>'+
+  '<div style="display:flex;gap:8px;margin-bottom:8px">'+
+  '<input id="coachInput" type="text" placeholder="Ask your examiner…" onkeydown="if(event.key===\'Enter\')coachSend()" style="flex:1;border:2px solid #DDD8CC;border-radius:12px;padding:12px 14px;font-size:.92rem;outline:none">'+
+  '<button class="btn btn-marine" onclick="coachSend()" '+(S.coachBusy?'disabled style="opacity:.5"':'')+'>➤</button></div>'+
+  '<div style="display:flex;gap:8px;flex-wrap:wrap">'+
+  '<button class="pill" style="cursor:pointer" onclick="coachQuick(\'Run an '+(S.test==="ielts"?"IELTS Speaking Part 1":"CELPIP speaking task")+' with me. Ask me one question at a time and give feedback.\')">🎤 Mock speaking</button>'+
+  '<button class="pill" style="cursor:pointer" onclick="coachQuick(\'Explain how '+(S.test==="celpip"?"CELPIP":"IELTS")+' is scored and what '+esc(S.target)+' requires.\')">📊 Scoring</button>'+
+  '<button class="pill" style="cursor:pointer" onclick="coachQuick(\'Give me one '+(S.test==="celpip"?"CELPIP":"IELTS")+' '+S.test+' writing tip for a high score.\')">💡 Writing tip</button></div>';
+}
+function coachQuick(t){var i=document.getElementById("coachInput");if(i)i.value=t;coachSend();}
+async function coachSend(){
+  var inp=document.getElementById("coachInput");if(!inp)return;var txt=inp.value.trim();if(!txt||S.coachBusy)return;
+  inp.value="";S.coachChat.push({role:"user",content:txt});S.coachBusy=true;render();scrollCoach();
+  try{
+    var data=await nellyAPI({model:"claude-sonnet-4-6",max_tokens:800,system:COACH_SYSTEM+" The learner is preparing for "+(S.test==="celpip"?"CELPIP":"IELTS")+", target "+S.target+".",messages:S.coachChat.slice(-16)});
+    var rep=(data.content||[]).filter(function(c){return c.type==="text";}).map(function(c){return c.text;}).join("").trim()||"(…)";
+    S.coachChat.push({role:"assistant",content:rep});suivi("coach_ia","exchange");
+  }catch(e){S.coachChat.push({role:"assistant",content:"📵 Connection issue ("+(e.message||"error")+"). Please try again."});}
+  S.coachBusy=false;render();scrollCoach();
+}
+function scrollCoach(){setTimeout(function(){var z=document.getElementById("coachZone");if(z)z.scrollTop=z.scrollHeight;},60);}
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   CAP CELPIP & IELTS — MOCK EXAM MODULE
+   Timed Listening + Reading (auto-scored) · Writing (AI-scored)
+   ═══════════════════════════════════════════════════════════════ */
+S.examView=null;S.examVer=0;S.examAns={};S.examDoneList=S.examDoneList||{};
+if(SAVE_KEYS.indexOf("examDoneList")<0)SAVE_KEYS.push("examDoneList");
+
+/* ---- CONTENT: CELPIP ---- */
+/* ═══════════════════════════════════════════════════════════════
+   CAP CELPIP & IELTS — ENRICHED EXAM BANK
+   Multiple versions · longer, closer-to-real exams
+   MOCK[test][skill] = [ {version exam}, {version exam}, ... ]
+   ═══════════════════════════════════════════════════════════════ */
+var MOCK={
+ celpip:{
+  /* ---------------- CELPIP LISTENING ---------------- */
+  listening:[
+   {label:"Listening — Exam 1",title:"Listening",icon:"🎧",time:1500,scale:"CLB",
+    intro:"CELPIP-style Listening. 4 parts, 12 questions. Each audio can be played TWICE. Read the questions first, then listen actively and take quick notes.",
+    docs:[
+     {t:"Part 1 — Problem Solving",script:"Hi, this is Maria from the leasing office. I'm calling about your apartment application. The good news is you're approved! But we need two more documents before Friday: a copy of your job letter, and a void cheque for the pre-authorized rent. You can email them or drop them off. If we don't get them by Friday at five, we'll have to offer the unit to the next applicant. Please call me back at 555-0142. Thanks!",
+      qs:[
+       {q:"Why is Maria calling?",o:["The application is approved but documents are needed","The application was refused","The rent is going up","The apartment is no longer available"],b:0,x:"Approved — but two documents are required."},
+       {q:"What is the deadline?",o:["Friday at 5 p.m.","Monday morning","No deadline","End of the month"],b:0,x:"'By Friday at five' or the unit goes to the next applicant."},
+       {q:"Which documents are required?",o:["A job letter and a void cheque","A passport and a photo","References only","A credit report"],b:0,x:"Job letter + void cheque."}]},
+     {t:"Part 2 — Daily Life",script:"So how was your first week at the new job? Honestly, it was a bit overwhelming. There's so much to remember, and I got lost twice in the building! But my team is really friendly, and my manager sat with me for an hour to explain everything. I think once I learn the software, I'll be fine. Next week I start the actual projects.",
+      qs:[
+       {q:"How does the speaker feel about the team?",o:["They are friendly and helpful","They are unfriendly","They ignored the speaker","They are too busy"],b:0,x:"'My team is really friendly.'"},
+       {q:"What was difficult in the first week?",o:["Remembering a lot and getting lost","The salary","The commute","The uniform"],b:0,x:"'So much to remember' and 'got lost twice'."},
+       {q:"What will the speaker do next week?",o:["Start the actual projects","Quit the job","Change teams","Take a vacation"],b:0,x:"'Next week I start the actual projects.'"}]},
+     {t:"Part 3 — Information",script:"Attention shoppers. The store will close in thirty minutes, at nine p.m. Please bring your final purchases to the cashier. Our customer service desk is now closed, but returns can be processed tomorrow starting at ten a.m. The pharmacy remains open until closing. Thank you for shopping with us, and have a good night.",
+      qs:[
+       {q:"When does the store close?",o:["9 p.m.","8:30 p.m.","10 a.m.","Midnight"],b:0,x:"'Close in thirty minutes, at nine p.m.'"},
+       {q:"When can returns be processed?",o:["Tomorrow from 10 a.m.","Right now","Never","Only online"],b:0,x:"Service desk closed; returns tomorrow at 10 a.m."},
+       {q:"What is still open?",o:["The pharmacy","The service desk","The café","Nothing"],b:0,x:"'The pharmacy remains open until closing.'"}]},
+     {t:"Part 4 — News Item",script:"In local news, the city announced today that construction on the new bus rapid transit line will begin next month. The project, expected to take two years, will add fifteen kilometres of dedicated bus lanes across the downtown core. City officials say the goal is to cut average commute times by twenty percent. Some business owners have raised concerns about parking during construction, but the city has promised temporary parking areas and regular updates.",
+      qs:[
+       {q:"What is the news item mainly about?",o:["A new bus rapid transit line","A new shopping mall","A tax increase","A sports event"],b:0,x:"Construction on the new bus rapid transit line."},
+       {q:"How long is the project expected to take?",o:["Two years","Two months","Ten years","Six weeks"],b:0,x:"'Expected to take two years.'"},
+       {q:"What concern did business owners raise?",o:["Parking during construction","Noise at night","The colour of the buses","Ticket prices"],b:0,x:"'Concerns about parking during construction.'"}]}]},
+   {label:"Listening — Exam 2",title:"Listening",icon:"🎧",time:1500,scale:"CLB",
+    intro:"CELPIP-style Listening, second version. 4 parts, 12 questions. Each audio can be played TWICE.",
+    docs:[
+     {t:"Part 1 — Problem Solving",script:"Hi, it's Dr. Lee's office calling for Samuel. We received your request to move your appointment. Unfortunately the doctor is fully booked next Tuesday, but we can offer you Wednesday at nine a.m. or Thursday at four thirty p.m. Please note that if you need a form filled out for work, you must bring it with you to the appointment. Give us a call back at 555-0198 to confirm. Thank you!",
+      qs:[
+       {q:"Why is the office calling?",o:["To offer new appointment times","To cancel the appointment","To send a bill","To confirm a prescription"],b:0,x:"The requested Tuesday is full; they offer two other times."},
+       {q:"What times are offered?",o:["Wednesday 9 a.m. or Thursday 4:30 p.m.","Monday or Friday","Only Tuesday","Any time"],b:0,x:"Wednesday at nine or Thursday at four thirty."},
+       {q:"What must Samuel bring if he needs a work form?",o:["The form itself","A photo","A cheque","Nothing"],b:0,x:"'You must bring it with you.'"}]},
+     {t:"Part 2 — Daily Life",script:"Did you end up buying the winter coat you were looking at? I did, but not that one. It was really warm, but way too expensive. I found a similar one on sale at another store for almost half the price. The only thing is, it didn't come in my favourite colour, so I got dark grey instead of navy. Honestly, for that price, I don't mind the colour at all.",
+      qs:[
+       {q:"Why didn't the speaker buy the first coat?",o:["It was too expensive","It was too thin","It was the wrong size","It was sold out"],b:0,x:"'Way too expensive.'"},
+       {q:"What colour did the speaker choose?",o:["Dark grey","Navy","Red","White"],b:0,x:"'Dark grey instead of navy.'"},
+       {q:"How does the speaker feel about the colour?",o:["They don't mind it","They regret it","They love navy more","They will return it"],b:0,x:"'I don't mind the colour at all.'"}]},
+     {t:"Part 3 — Information",script:"Welcome to the community pool. Please note the following rules. Showers are required before entering the water. Children under eight must be accompanied by an adult in the water at all times. The deep end is reserved for lane swimming between six and eight p.m. Lockers require a one-dollar coin, which is returned when you collect your belongings. Enjoy your swim, and please listen for any announcements from our lifeguards.",
+      qs:[
+       {q:"What is required before entering the water?",o:["A shower","A swimming test","A ticket","A towel"],b:0,x:"'Showers are required before entering.'"},
+       {q:"What is the rule for children under eight?",o:["An adult must be with them in the water","They cannot swim","They swim for free","They use the deep end"],b:0,x:"Accompanied by an adult at all times."},
+       {q:"What do the lockers require?",o:["A one-dollar coin (returned later)","A key from staff","A monthly pass","Nothing"],b:0,x:"'A one-dollar coin, returned when you collect your belongings.'"}]},
+     {t:"Part 4 — News Item",script:"A local food bank is asking residents for help as demand rises this winter. Organizers say the number of families using the service has increased by thirty percent since last year. They are especially in need of canned vegetables, pasta, and baby supplies. Cash donations are also welcome, as the food bank can buy in bulk at lower prices. Volunteers are needed on weekends to sort and pack donations. To help, visit the food bank's website.",
+      qs:[
+       {q:"What is the food bank asking for?",o:["Donations and volunteers","New staff only","A new building","Government loans"],b:0,x:"Food/cash donations and weekend volunteers."},
+       {q:"How much has demand increased?",o:["30 percent","5 percent","100 percent","It has decreased"],b:0,x:"'Increased by thirty percent since last year.'"},
+       {q:"Why are cash donations useful?",o:["The food bank can buy in bulk more cheaply","They are easier to store","They are tax-free","They pay the staff"],b:0,x:"'Buy in bulk at lower prices.'"}]}]}],
+  /* ---------------- CELPIP READING ---------------- */
+  reading:[
+   {label:"Reading — Exam 1",title:"Reading",icon:"📖",time:1500,scale:"CLB",
+    intro:"CELPIP-style Reading. 4 parts, 14 questions. Skim first for the main idea, then scan for each detail.",
+    docs:[
+     {t:"Part 1 — Correspondence",texte:"<p><em>From:</em> community.centre@example.ca<br><em>Subject:</em> Free Newcomer Workshop</p><p>Dear resident,</p><p>We are pleased to invite you to our free workshop, <strong>Settling in Canada</strong>, on Saturday, March 8th, from 10 a.m. to 1 p.m. at the London Community Centre. Topics include finding a family doctor, opening a bank account, and understanding your rights as a tenant. Lunch and childcare are provided at no cost. Space is limited to 30 participants, so please register by March 5th by replying to this email with your name and the number of people attending.</p><p>Warm regards,<br>The Community Team</p>",
+      qs:[
+       {q:"What is the main purpose of the email?",o:["To invite the reader to a free workshop","To sell a product","To cancel an event","To ask for a donation"],b:0,x:"An invitation to the 'Settling in Canada' workshop."},
+       {q:"What must you do to attend?",o:["Register by March 5th","Pay a fee","Just show up","Call the doctor"],b:0,x:"Register by March 5th with name and number attending."},
+       {q:"What is NOT a workshop topic?",o:["How to buy a car","Finding a family doctor","Opening a bank account","Tenant rights"],b:0,x:"Car buying is not listed."},
+       {q:"What is provided free?",o:["Lunch and childcare","Transportation","A laptop","A phone plan"],b:0,x:"'Lunch and childcare are provided at no cost.'"}]},
+     {t:"Part 2 — Diagram / Information",texte:"<p><strong>Library Membership Options</strong></p><p><strong>Basic (Free):</strong> Borrow up to 5 books for 3 weeks. Access to public computers (1 hour/day).</p><p><strong>Plus ($20/year):</strong> Borrow up to 15 items including DVDs. 3-week loans with one free renewal. Computer access 3 hours/day. Free printing up to 50 pages/month.</p><p><strong>Family ($35/year):</strong> All Plus benefits for up to 4 family members. Access to the study rooms. Priority holds on new releases.</p>",
+      qs:[
+       {q:"Which plan allows borrowing DVDs?",o:["Plus and Family","Basic only","None","Basic and Plus"],b:0,x:"Plus includes DVDs; Family includes all Plus benefits."},
+       {q:"How many books can a Basic member borrow?",o:["5","15","Unlimited","10"],b:0,x:"'Borrow up to 5 books.'"},
+       {q:"Which plan gives access to study rooms?",o:["Family","Basic","Plus","All of them"],b:0,x:"Study rooms are a Family benefit."},
+       {q:"How much free printing does Plus include?",o:["50 pages/month","No printing","10 pages/month","Unlimited"],b:0,x:"'Free printing up to 50 pages/month.'"}]},
+     {t:"Part 3 — Information",texte:"<p>Winter driving in Canada requires preparation. Between December and March, many provinces recommend or require winter tires, which stay flexible in cold temperatures and grip snow and ice far better than all-season tires. Drivers should also keep an emergency kit in the trunk: a blanket, a flashlight, warm gloves, and a small shovel. Experts advise reducing speed, increasing the distance from the car ahead, and avoiding sudden braking on icy roads. If visibility drops during a snowstorm, it is safer to pull over and wait than to continue driving.</p>",
+      qs:[
+       {q:"Why are winter tires recommended?",o:["They grip snow and ice better","They are cheaper","They use less fuel","They last longer"],b:0,x:"Flexible in the cold; better grip."},
+       {q:"What should be in the emergency kit?",o:["Blanket, flashlight, gloves, shovel","A television","Summer clothes","A spare engine"],b:0,x:"The four listed items."},
+       {q:"What to do in very low visibility?",o:["Pull over and wait","Drive faster","Turn off the lights","Brake suddenly"],b:0,x:"'Safer to pull over and wait.'"}]},
+     {t:"Part 4 — Viewpoints",texte:"<p>Should cities offer free public transit? Supporters argue it would reduce traffic, cut pollution, and help low-income residents who struggle with fares. They point to cities where ridership rose sharply after fares were removed. Critics, however, warn that 'free' transit is not truly free — the cost simply shifts to taxpayers. They argue the money might be better spent improving service reliability and frequency, which they say matters more to riders than price. Both sides agree, though, that current transit systems in many cities need significant investment.</p>",
+      qs:[
+       {q:"What do supporters of free transit argue?",o:["It reduces traffic and helps low-income riders","It makes cities richer","It is bad for the environment","It should cost more"],b:0,x:"Reduce traffic, cut pollution, help low-income residents."},
+       {q:"What do critics argue?",o:["The cost shifts to taxpayers","Transit should be banned","Fares should double","Nobody uses transit"],b:0,x:"'Free' transit is not truly free — taxpayers pay."},
+       {q:"What do BOTH sides agree on?",o:["Transit systems need significant investment","Transit should be free","Cars are better","Fares should rise"],b:0,x:"'Both sides agree… need significant investment.'"}]}]},
+   {label:"Reading — Exam 2",title:"Reading",icon:"📖",time:1500,scale:"CLB",
+    intro:"CELPIP-style Reading, second version. 4 parts, 14 questions.",
+    docs:[
+     {t:"Part 1 — Correspondence",texte:"<p><em>From:</em> hr@brightpath.ca<br><em>Subject:</em> Your Interview — Next Steps</p><p>Dear Ms. Okoye,</p><p>Thank you for interviewing for the Customer Success role on Monday. We were impressed with your experience. As a next step, we would like to invite you to a short second interview with the team lead, either this Thursday at 2 p.m. or Friday at 11 a.m. This meeting will be online, and a link will be sent once you confirm. Please also send two professional references. We look forward to speaking with you again.</p><p>Best regards,<br>The BrightPath HR Team</p>",
+      qs:[
+       {q:"Why is HR writing?",o:["To invite a second interview","To reject the candidate","To offer the job","To cancel the process"],b:0,x:"'Invite you to a short second interview.'"},
+       {q:"What must Ms. Okoye send?",o:["Two professional references","A photo","A resume again","A cover letter"],b:0,x:"'Please also send two professional references.'"},
+       {q:"How will the second interview take place?",o:["Online","In person","By phone only","By mail"],b:0,x:"'This meeting will be online.'"},
+       {q:"When is one option offered?",o:["Thursday at 2 p.m.","Monday morning","Saturday","Any day"],b:0,x:"Thursday 2 p.m. or Friday 11 a.m."}]},
+     {t:"Part 2 — Diagram / Information",texte:"<p><strong>Recycling Guide</strong></p><p><strong>Blue Bin:</strong> paper, cardboard, glass bottles, metal cans, hard plastics (#1–#7).</p><p><strong>Green Bin:</strong> food scraps, coffee grounds, tea bags, soiled paper towels, yard trimmings.</p><p><strong>Garbage:</strong> plastic bags, styrofoam, broken glass, diapers, chip bags.</p><p>Note: Please rinse containers before recycling. Flatten cardboard boxes. Collection is every Wednesday; bins must be at the curb by 7 a.m.</p>",
+      qs:[
+       {q:"Where do coffee grounds go?",o:["Green bin","Blue bin","Garbage","Any bin"],b:0,x:"Coffee grounds → green bin."},
+       {q:"Which item goes in the garbage?",o:["Styrofoam","Glass bottles","Cardboard","Metal cans"],b:0,x:"Styrofoam → garbage."},
+       {q:"What must you do before recycling containers?",o:["Rinse them","Paint them","Freeze them","Label them"],b:0,x:"'Please rinse containers.'"},
+       {q:"By what time must bins be at the curb?",o:["7 a.m.","Noon","9 p.m.","Any time"],b:0,x:"'By 7 a.m.'"}]},
+     {t:"Part 3 — Information",texte:"<p>Many newcomers to Canada are surprised by the importance of building a credit history. A credit score, ranging from 300 to 900, helps lenders decide whether to approve loans, mortgages, and even some rental applications. New arrivals often start with no score at all. Experts recommend beginning with a secured credit card, paying every bill on time, and keeping balances low. It can take six months to a year of responsible use to build a solid score. Checking your own score does not lower it, so monitoring regularly is encouraged.</p>",
+      qs:[
+       {q:"What is the passage mainly about?",o:["Building a credit history in Canada","Opening a bank account","Buying a car","Finding a job"],b:0,x:"The importance of building a credit history."},
+       {q:"What do experts recommend starting with?",o:["A secured credit card","A large loan","A mortgage","A business account"],b:0,x:"'Begin with a secured credit card.'"},
+       {q:"Does checking your own score lower it?",o:["No","Yes","Only once a year","Only for newcomers"],b:0,x:"'Checking your own score does not lower it.'"}]},
+     {t:"Part 4 — Viewpoints",texte:"<p>Is working from home better than working in an office? Advocates of remote work highlight saved commuting time, lower costs, and flexibility that improves work-life balance. They argue that many employees are more productive without office distractions. Opponents counter that offices foster spontaneous collaboration, mentorship, and a clearer boundary between work and home life. They worry that remote workers, especially newcomers to a company, may feel isolated. Increasingly, organizations are settling on hybrid arrangements, hoping to capture the benefits of both approaches.</p>",
+      qs:[
+       {q:"What do advocates of remote work say?",o:["It saves time and improves balance","It reduces productivity","It is only for managers","It should be banned"],b:0,x:"Saved commuting, flexibility, productivity."},
+       {q:"What concern do opponents raise?",o:["Remote workers may feel isolated","Offices are too cheap","Nobody works at home","Commuting is fun"],b:0,x:"Isolation, especially for newcomers."},
+       {q:"What are many organizations choosing?",o:["Hybrid arrangements","Fully remote","Fully in-office","No work at all"],b:0,x:"'Settling on hybrid arrangements.'"}]}]}],
+  /* ---------------- CELPIP WRITING ---------------- */
+  writing:[
+   {label:"Writing — Task 1 (Email)",title:"Writing",icon:"✍️",scale:"CLB",wr:true,
+    intro:"CELPIP Writing Task 1. Write an email under timed conditions (27 min), then get an AI score.",
+    task:{t:"Task 1 — Email (27 min)",prompt:"You signed up for an online course, but the platform has technical problems and you cannot access the lessons. Write an email to the course provider (150–200 words). In your email:\n• explain the problem\n• describe how it affects you\n• say what you would like them to do",time:1620}},
+   {label:"Writing — Task 2 (Survey)",title:"Writing",icon:"✍️",scale:"CLB",wr:true,
+    intro:"CELPIP Writing Task 2. Respond to a survey with a clear opinion (26 min), then get an AI score.",
+    task:{t:"Task 2 — Survey / Opinion (26 min)",prompt:"Your city is considering making public transit free for everyone. Choose ONE option and explain your choice with clear reasons and examples (150–200 words):\nOption A: Make public transit free for all residents.\nOption B: Keep fares but invest in better, more frequent service.",time:1560}}]
+ },
+ ielts:{
+  /* ---------------- IELTS LISTENING ---------------- */
+  listening:[
+   {label:"Listening — Test 1",title:"Listening",icon:"🎧",time:1800,scale:"Band",
+    intro:"IELTS-style Listening. 4 sections, 12 questions, rising difficulty. Accents vary. Each audio can be played TWICE here (real test: once).",
+    docs:[
+     {t:"Section 1 — Everyday conversation",script:"Good morning, Sunrise Car Rentals, how can I help? Hi, I'd like to rent a car for the weekend. Certainly. What size were you thinking? A compact would be fine. And for how many days? Three days, Friday to Sunday. Our compact is forty-two dollars a day, so that's one hundred twenty-six dollars total, plus insurance at fifteen a day. Do you need a child seat? Yes, one please. That's an extra ten dollars for the weekend. Great, can I book it under the name Patel? P-A-T-E-L.",
+      qs:[
+       {q:"How many days is the rental?",o:["Three days","One day","A week","Two days"],b:0,x:"'Friday to Sunday' = three days."},
+       {q:"How much is the compact per day?",o:["$42","$15","$126","$10"],b:0,x:"'Forty-two dollars a day.'"},
+       {q:"What extra does the customer request?",o:["A child seat","A GPS","A second driver","A roof box"],b:0,x:"'Yes, one please' to the child seat."}]},
+     {t:"Section 2 — Monologue",script:"Welcome to Riverside Park. A few things to help you enjoy your visit. The main trail is a five-kilometre loop, mostly flat, suitable for families and strollers. Washrooms are located near the main entrance and by the lake. Please keep dogs on a leash at all times, and note that swimming is not permitted in the lake this season due to water testing. The café by the entrance is open until six p.m. and offers hot drinks and light snacks. Guided bird-watching tours run every Saturday at ten a.m.",
+      qs:[
+       {q:"How long is the main trail?",o:["Five kilometres","Two kilometres","Ten kilometres","One kilometre"],b:0,x:"'A five-kilometre loop.'"},
+       {q:"What is NOT permitted this season?",o:["Swimming in the lake","Walking dogs","Drinking coffee","Bird-watching"],b:0,x:"'Swimming is not permitted… due to water testing.'"},
+       {q:"When do bird-watching tours run?",o:["Saturdays at 10 a.m.","Every day","Sundays at noon","Never"],b:0,x:"'Every Saturday at ten a.m.'"}]},
+     {t:"Section 3 — Academic discussion",script:"So, for our presentation on renewable energy, how should we divide the work? I could cover solar power, since I read a lot about it. That works. Then I'll take wind energy. And we still need someone for the introduction and conclusion. I can do those if you both handle the research. Perfect. When should we meet again? How about Thursday afternoon, in the library? Let's say two o'clock. Agreed.",
+      qs:[
+       {q:"Which topic will the first speaker cover?",o:["Solar power","Wind energy","The conclusion","Hydro power"],b:0,x:"'I could cover solar power.'"},
+       {q:"Where will they meet?",o:["In the library","At a café","Online","At home"],b:0,x:"'In the library.'"},
+       {q:"What time will they meet?",o:["2 o'clock","10 o'clock","Noon","4 o'clock"],b:0,x:"'Let's say two o'clock.'"}]},
+     {t:"Section 4 — Lecture",script:"Today we'll look at how cities can reduce traffic. One effective method is investing in public transit: reliable buses and trains encourage people to leave their cars at home. A second approach is building bike lanes, which are cheap and improve public health. Some cities also charge a fee to drive into the downtown core during busy hours, which reduces congestion significantly. However, these measures only work well if they are introduced together, as part of a long-term, coordinated plan.",
+      qs:[
+       {q:"What is the lecture mainly about?",o:["Reducing city traffic","Building houses","Growing food","Saving water"],b:0,x:"How cities can reduce traffic."},
+       {q:"Why are bike lanes recommended?",o:["Cheap and improve public health","Very expensive","They increase traffic","They replace trains"],b:0,x:"'Cheap and improve public health.'"},
+       {q:"When do these measures work well?",o:["When introduced together as a plan","When used alone","Only in summer","Only in villages"],b:0,x:"'Only work well if introduced together.'"}]}]},
+   {label:"Listening — Test 2",title:"Listening",icon:"🎧",time:1800,scale:"Band",
+    intro:"IELTS-style Listening, second version. 4 sections, 12 questions.",
+    docs:[
+     {t:"Section 1 — Everyday conversation",script:"Hello, City Sports Centre. Hi, I'd like to sign up for the swimming lessons. Great. Are they for you or a child? For my daughter, she's seven. Perfect, that's our junior group, Saturdays at nine thirty. The course is eight weeks and costs ninety dollars. Do I need to bring anything? Just a swimsuit, towel, and goggles. Members get ten percent off — are you a member? Not yet. No problem, you can register at the front desk. Can I book under the name Nguyen? N-G-U-Y-E-N.",
+      qs:[
+       {q:"Who are the lessons for?",o:["The caller's daughter","The caller","A friend","A whole family"],b:0,x:"'For my daughter, she's seven.'"},
+       {q:"When is the junior group?",o:["Saturdays at 9:30","Sundays at noon","Weekdays","Any time"],b:0,x:"'Saturdays at nine thirty.'"},
+       {q:"How much does the 8-week course cost?",o:["$90","$10","$80","$100"],b:0,x:"'Costs ninety dollars.'"}]},
+     {t:"Section 2 — Monologue",script:"Thank you for joining today's museum tour. Before we start, a few reminders. Photography without flash is allowed in all galleries except the special exhibition on the third floor. The gift shop and café are on the ground floor. Our tour lasts about ninety minutes and ends in the main hall. If you'd like an audio guide in another language, they are available at the front desk for a small fee. Please stay with the group, as some areas are only accessible with a guide.",
+      qs:[
+       {q:"Where is photography NOT allowed?",o:["The special exhibition on the third floor","The ground floor","The café","Anywhere"],b:0,x:"Except the third-floor special exhibition."},
+       {q:"How long is the tour?",o:["About 90 minutes","30 minutes","Three hours","All day"],b:0,x:"'Lasts about ninety minutes.'"},
+       {q:"Where are audio guides available?",o:["At the front desk","In the café","Online only","In each gallery"],b:0,x:"'Available at the front desk for a small fee.'"}]},
+     {t:"Section 3 — Academic discussion",script:"Have you started the research essay yet? A little. I'm struggling to narrow my topic. Me too. My tutor said we should pick something specific rather than broad. Right — 'climate change' is too big, but 'the effect of city trees on summer temperatures' could work. That's a good example. Should we use the online journals or the library books? Both, I think, but the online databases are faster for recent studies. Let's book a study room for Friday to compare notes. Sounds good.",
+      qs:[
+       {q:"What are the students struggling with?",o:["Narrowing their topic","Finding the library","Writing in English","The deadline"],b:0,x:"'Struggling to narrow my topic.'"},
+       {q:"What did the tutor advise?",o:["Pick something specific","Pick something broad","Avoid research","Work alone"],b:0,x:"'Pick something specific rather than broad.'"},
+       {q:"Why prefer online databases?",o:["Faster for recent studies","They are free","They are printed","They are required"],b:0,x:"'Faster for recent studies.'"}]},
+     {t:"Section 4 — Lecture",script:"Today's lecture concerns sleep and learning. Research increasingly shows that sleep is not simply rest; it is when the brain consolidates new information. Studies find that students who sleep well after studying remember more than those who stay up late. During deep sleep, the brain replays and strengthens the day's memories. Short naps can also help, but they are no substitute for a full night's rest. The practical lesson is clear: cramming all night before an exam is far less effective than studying earlier and sleeping properly.",
+      qs:[
+       {q:"What is the main idea?",o:["Sleep helps the brain consolidate learning","Sleep wastes study time","Naps replace night sleep","Exams cause insomnia"],b:0,x:"Sleep consolidates new information."},
+       {q:"What happens during deep sleep?",o:["The brain replays and strengthens memories","The brain stops working","Nothing useful","Muscles grow"],b:0,x:"'Replays and strengthens the day's memories.'"},
+       {q:"What is the practical lesson?",o:["Study earlier and sleep properly","Cram all night","Never nap","Skip exams"],b:0,x:"Cramming is less effective than studying earlier + sleeping."}]}]}],
+  /* ---------------- IELTS READING ---------------- */
+  reading:[
+   {label:"Reading — Test 1",title:"Reading",icon:"📖",time:2400,scale:"Band",
+    intro:"IELTS-style Reading. 3 passages, 13 questions, including True/False/Not Given. Base every answer ONLY on the text — 'Not Given' means the text simply doesn't say.",
+    docs:[
+     {t:"Passage 1 — The history of tea",texte:"<p>Tea is the most widely consumed drink in the world after water. According to legend, it was discovered in China around 2737 BCE when leaves blew into the boiling water of an emperor. For centuries, tea remained an Asian tradition. It reached Europe in the seventeenth century through Dutch and Portuguese traders, and quickly became fashionable in Britain, where it is now deeply tied to national identity. Today, tea is grown in more than forty countries, with India and China producing the largest quantities. While black tea dominates Western markets, green tea remains more popular across much of Asia.</p>",
+      qs:[
+       {q:"Tea is the world's most consumed drink overall.",o:["False — water is first","True","Not Given","Only in Asia"],b:0,x:"'Most consumed after water' — water is first."},
+       {q:"Tea reached Europe in the 17th century.",o:["True","False","Not Given","In the 19th century"],b:0,x:"'Reached Europe in the seventeenth century.'"},
+       {q:"India produces more tea than China.",o:["Not Given","True","False","Both produce none"],b:0,x:"Both are 'largest' producers; the ranking isn't stated → Not Given."},
+       {q:"Green tea is more popular than black tea in Asia.",o:["True","False","Not Given","Only in India"],b:0,x:"'Green tea remains more popular across much of Asia.'"}]},
+     {t:"Passage 2 — Remote work",texte:"<p>The rise of remote work has transformed how companies operate. Supporters argue that working from home increases productivity, reduces commuting stress, and allows firms to hire talent regardless of location. Employees often report a better work-life balance. However, critics point to challenges: some workers feel isolated, collaboration can suffer, and it may be harder for new employees to learn from colleagues. Many organizations have therefore adopted a 'hybrid' model, combining office and home days. Research suggests that the success of remote work depends less on the location itself and more on clear communication and trust between managers and their teams.</p>",
+      qs:[
+       {q:"Supporters say remote work lets firms hire from anywhere.",o:["True","False","Not Given","Only large firms"],b:0,x:"'Hire talent regardless of location.'"},
+       {q:"All companies have fully abandoned offices.",o:["False","True","Not Given","Only tech firms"],b:0,x:"Many adopted a HYBRID model → false."},
+       {q:"Remote work's success depends mainly on the location.",o:["False","True","Not Given","Yes, always"],b:0,x:"'Depends less on location and more on communication and trust.'"},
+       {q:"Some workers feel isolated when working remotely.",o:["True","False","Not Given","Never"],b:0,x:"'Some workers feel isolated.'"}]},
+     {t:"Passage 3 — Urban green spaces",texte:"<p>Parks and green spaces are increasingly recognized as essential to healthy cities. Beyond their beauty, trees and grass reduce urban temperatures, absorb rainwater that would otherwise flood streets, and filter air pollution. Studies have linked access to green space with lower stress levels and improved mental health. Yet not all residents benefit equally: wealthier neighbourhoods often have more parks than poorer ones, a gap city planners are now trying to close. Some cities have introduced 'pocket parks' — small green areas on unused land — to bring nature closer to dense neighbourhoods. Experts stress that maintaining these spaces is as important as creating them.</p>",
+      qs:[
+       {q:"Green spaces can help prevent street flooding.",o:["True","False","Not Given","Only in summer"],b:0,x:"They 'absorb rainwater that would otherwise flood streets.'"},
+       {q:"All neighbourhoods have equal access to parks.",o:["False","True","Not Given","Yes, by law"],b:0,x:"Wealthier areas 'often have more parks than poorer ones.'"},
+       {q:"Pocket parks are built on unused land.",o:["True","False","Not Given","Only downtown"],b:0,x:"'Small green areas on unused land.'"},
+       {q:"Green spaces increase residents' stress.",o:["False","True","Not Given","Sometimes"],b:0,x:"Linked with LOWER stress → false."},
+       {q:"Maintaining green spaces matters as much as creating them.",o:["True","False","Not Given","Only creating matters"],b:0,x:"'Maintaining… is as important as creating them.'"}]}]},
+   {label:"Reading — Test 2",title:"Reading",icon:"📖",time:2400,scale:"Band",
+    intro:"IELTS-style Reading, second version. 3 passages, 13 questions.",
+    docs:[
+     {t:"Passage 1 — The history of coffee",texte:"<p>Coffee's origins are often traced to Ethiopia, where, according to legend, a goat herder noticed his goats becoming lively after eating certain berries. By the fifteenth century, coffee was being cultivated and traded in Yemen, and coffeehouses spread across the Arab world as centres of conversation and news. Coffee reached Europe in the seventeenth century, where it initially met suspicion before becoming immensely popular. Today, coffee is one of the most traded commodities in the world, grown mainly in a band of tropical countries. Brazil is the largest producer, though the drink is consumed most heavily in northern European nations.</p>",
+      qs:[
+       {q:"Coffee is often traced to Ethiopia.",o:["True","False","Not Given","To Brazil"],b:0,x:"'Coffee's origins are often traced to Ethiopia.'"},
+       {q:"Coffee was welcomed immediately in Europe.",o:["False","True","Not Given","Only in Italy"],b:0,x:"It 'initially met suspicion' → false."},
+       {q:"Brazil is the largest coffee producer.",o:["True","False","Not Given","Tied with Yemen"],b:0,x:"'Brazil is the largest producer.'"},
+       {q:"Coffeehouses were used only for drinking.",o:["False","True","Not Given","Yes"],b:0,x:"They were 'centres of conversation and news' → false."}]},
+     {t:"Passage 2 — The benefits of bilingualism",texte:"<p>Speaking more than one language was once thought to confuse children, but modern research paints a very different picture. Studies suggest that bilingual individuals often show stronger 'executive function' — the mental skills used to focus attention, switch between tasks, and ignore distractions. Constantly choosing between two languages appears to give the brain regular exercise. Some research also indicates that bilingualism may delay the onset of certain age-related cognitive decline by several years. However, scientists caution that the size of these benefits varies, and that being bilingual is not a guarantee of academic success. What is clear is that a second language is an asset, not a burden.</p>",
+      qs:[
+       {q:"Bilingualism was once believed to confuse children.",o:["True","False","Not Given","Only in Canada"],b:0,x:"'Once thought to confuse children.'"},
+       {q:"Bilingual people may have stronger executive function.",o:["True","False","Not Given","Never"],b:0,x:"'Often show stronger executive function.'"},
+       {q:"Bilingualism guarantees academic success.",o:["False","True","Not Given","Yes, always"],b:0,x:"'Not a guarantee of academic success.'"},
+       {q:"Bilingualism may delay some cognitive decline.",o:["True","False","Not Given","Only in children"],b:0,x:"'May delay the onset of certain age-related cognitive decline.'"}]},
+     {t:"Passage 3 — Plastic and the oceans",texte:"<p>Every year, millions of tonnes of plastic waste enter the world's oceans, harming marine life and entering the food chain. Much of this plastic breaks down into tiny fragments called microplastics, which are now found from the deepest ocean trenches to Arctic ice. Efforts to address the problem take several forms: reducing single-use plastics, improving waste collection, and developing biodegradable materials. Some organizations are also working to clean up existing waste, though experts argue that prevention is far more effective than removal. Public awareness has grown, and many governments have introduced bans on items such as plastic bags and straws. Still, researchers warn that without coordinated global action, the amount of plastic in the oceans could continue to rise sharply.</p>",
+      qs:[
+       {q:"Microplastics have been found in Arctic ice.",o:["True","False","Not Given","Only in trenches"],b:0,x:"'From the deepest ocean trenches to Arctic ice.'"},
+       {q:"Experts say removal is more effective than prevention.",o:["False","True","Not Given","They are equal"],b:0,x:"'Prevention is far more effective than removal' → false."},
+       {q:"Some governments have banned plastic bags.",o:["True","False","Not Given","None have"],b:0,x:"'Bans on items such as plastic bags and straws.'"},
+       {q:"Ocean plastic will definitely decrease soon.",o:["False","True","Not Given","Yes, by 2030"],b:0,x:"Without action it 'could continue to rise sharply' → false."},
+       {q:"All plastic waste is successfully recycled.",o:["Not Given","True","False","Yes"],b:0,x:"The text doesn't state recycling rates → Not Given."}]}]}],
+  /* ---------------- IELTS WRITING ---------------- */
+  writing:[
+   {label:"Writing — Task 2 (Essay)",title:"Writing",icon:"✍️",scale:"Band",wr:true,
+    intro:"IELTS Writing Task 2 (worth double). Write an essay of at least 250 words in 40 minutes, then get an AI band score.",
+    task:{t:"Task 2 — Essay (40 min)",prompt:"Some people think that international travel is beneficial because it broadens the mind and helps economies. Others believe it harms the environment and local cultures. Discuss both views and give your own opinion. Write at least 250 words.",time:2400}},
+   {label:"Writing — Task 1 General (Letter)",title:"Writing",icon:"✍️",scale:"Band",wr:true,
+    intro:"IELTS General Task 1. Write a letter of at least 150 words in 20 minutes, then get an AI band score.",
+    task:{t:"Task 1 — Letter (20 min)",prompt:"You recently stayed at a hotel and were not satisfied with your experience. Write a letter to the hotel manager (at least 150 words). In your letter:\n• give details of your stay\n• explain what went wrong\n• say what you would like the manager to do",time:1200}},
+   {label:"Writing — Task 1 Academic (Graph)",title:"Writing",icon:"✍️",scale:"Band",wr:true,
+    intro:"IELTS Academic Task 1. Describe the data in at least 150 words in 20 minutes, then get an AI band score.",
+    task:{t:"Task 1 — Academic (20 min)",prompt:"The chart below shows the number of newcomers settling in three Canadian provinces (Ontario, Quebec, British Columbia) between 2015 and 2025. Summarize the information by selecting and reporting the main features, and make comparisons where relevant (at least 150 words).\n\nImagine the data shows: Ontario rising steadily from 90,000 to 160,000; Quebec slightly falling from 50,000 to 42,000; British Columbia rising sharply from 30,000 to 75,000 then plateauing.",time:1200}}]
+ }
+};
+
+function niveauCLB(pct){if(pct>=90)return "CLB 10+";if(pct>=80)return "CLB 9";if(pct>=68)return "CLB 8";if(pct>=55)return "CLB 7";if(pct>=42)return "CLB 6";return "CLB 5 or below";}
+function niveauBand(pct){if(pct>=90)return "Band 8–9";if(pct>=78)return "Band 7–7.5";if(pct>=63)return "Band 6.5";if(pct>=50)return "Band 6";if(pct>=38)return "Band 5.5";return "Band 5 or below";}
+function niveauFromPct(pct){return S.test==="celpip"?niveauCLB(pct):niveauBand(pct);}
+
+/* ---- MOCK EXAM HUB ---- */
+function curExam(key){var a=MOCK[S.test][key];return Array.isArray(a)?a[S.examVer||0]:a;}
+
+function renderExam(){
+  if(S.examView==="listening")return renderExamQCM("listening");
+  if(S.examView==="reading")return renderExamQCM("reading");
+  if(S.examView==="writing")return renderExamWriting();
+  if(S.examView==="pick")return renderExamPick();
+  var m=MOCK[S.test];var isC=S.test==="celpip";
+  return '<div class="sur">Mock Exam</div><div class="titre-vue">📝 Full practice test</div>'+
+  '<div class="note">Real conditions: timer, official-style questions, instant '+(isC?"CLB":"band")+' estimate. Multiple versions available — do one skill at a time or all four!</div>'+
+  testSwitch()+
+  card('<div style="background:'+(isC?"var(--celpipL)":"var(--ieltsL)")+';border-radius:12px;padding:12px 14px">'+
+  '<div style="font-weight:900;color:'+(isC?"var(--celpip)":"var(--ielts)")+';font-size:.95rem">'+(isC?"🇨🇦 CELPIP Mock Exam":"🌐 IELTS Mock Exam")+'</div>'+
+  '<div style="font-size:.78rem;color:var(--gris);margin-top:2px">Scored in '+(isC?"CLB levels (1–12)":"IELTS bands (0–9)")+' · timed like the real thing.</div></div>')+
+  skillCard("listening",m.listening)+
+  skillCard("reading",m.reading)+
+  skillCard("writing",m.writing)+
+  card('<div style="font-size:.8rem;color:var(--gris)">🎤 <strong>Speaking</strong> is best practiced live — head to the <strong>Speaking Lab</strong> or book a <strong>mock exam with Nelly</strong> for a full simulation.</div>'+
+  '<button class="btn btn-blanc btn-bloc" style="margin-top:10px" onclick="goTab(\'prepare\');goSub(\'speaking\')">🎤 Go to Speaking Lab</button>');
+}
+function skillCard(key,versions){
+  var arr=Array.isArray(versions)?versions:[versions];
+  var v0=arr[0];var nv=arr.length;
+  return '<div class="carte gcarte" onclick="openExamPick(\''+key+'\')">'+
+  '<div class="gico" style="background:'+(S.test==="celpip"?"var(--celpipL)":"var(--ieltsL)")+'">'+v0.icon+'</div>'+
+  '<div class="gtxt"><div class="gtit">'+v0.title+'</div>'+
+  '<div class="gdesc">'+nv+' version'+(nv>1?"s":"")+' · '+(v0.wr?"AI-scored writing":(v0.docs?"~"+v0.docs.reduce(function(n,d){return n+d.qs.length;},0)+" questions":""))+'</div></div>'+
+  '<div class="gfle">→</div></div>';
+}
+function openExamPick(key){S.examPickKey=key;S.examView="pick";render();window.scrollTo(0,0);}
+function renderExamPick(){
+  var key=S.examPickKey;var arr=MOCK[S.test][key];if(!Array.isArray(arr))arr=[arr];
+  return '<button onclick="quitExam()" style="background:#fff;border:1.5px solid var(--ligne);color:var(--gris);border-radius:10px;padding:8px 14px;font-size:.78rem;font-weight:800;cursor:pointer;margin-bottom:14px">← Back to Mock Exam</button>'+
+  '<div class="sur">'+(S.test==="celpip"?"CELPIP":"IELTS")+' · '+arr[0].title+'</div>'+
+  '<div class="titre-vue">Choose a version</div>'+
+  '<div class="note">Each version is a different exam. Try them all to practice more!</div>'+
+  arr.map(function(v,vi){
+    var done=S.examDoneList[S.test+"_"+key+"_"+vi];
+    return '<div class="carte gcarte" onclick="startExam(\''+key+'\','+vi+')">'+
+    '<div class="gico" style="background:'+(S.test==="celpip"?"var(--celpipL)":"var(--ieltsL)")+'">'+v.icon+'</div>'+
+    '<div class="gtxt"><div class="gtit">'+esc(v.label||v.title)+(done?' · '+done:'')+'</div>'+
+    '<div class="gdesc">'+(v.time?Math.round(v.time/60)+" min · ":"")+(v.wr?"AI-scored writing":(v.docs?v.docs.reduce(function(n,d){return n+d.qs.length;},0)+" questions":""))+'</div></div>'+
+    '<div class="gfle">'+(done?'↻':'▶')+'</div></div>';
+  }).join("");
+}
+function startExam(key,ver){S.examVer=ver||0;S.examView=key;S.examAns={};S.examStart=Date.now();S.wrText="";S.wrFeedback=null;S._examPlays={};render();window.scrollTo(0,0);
+  var ex=curExam(key);if(ex&&ex.time)startExamTimer(ex.time);
+}
+var _examTimer=null,_examLeft=0;
+function startExamTimer(sec){_examLeft=sec;clearInterval(_examTimer);_examTimer=setInterval(function(){_examLeft--;var el=document.getElementById("examClock");if(el){var m=Math.floor(_examLeft/60),s=_examLeft%60;el.textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;if(_examLeft<=60)el.style.color="var(--rouge)";}if(_examLeft<=0){clearInterval(_examTimer);if(S.examView==="listening"||S.examView==="reading")finishExamQCM(S.examView,true);else if(S.examView==="writing")submitExamWriting(true);}},1000);}
+function stopExamTimer(){clearInterval(_examTimer);}
+
+/* ---- QCM ENGINE (Listening / Reading) ---- */
+function renderExamQCM(key){
+  var m=curExam(key);var isL=key==="listening";
+  var qNum=0;
+  var body=m.docs.map(function(doc,di){
+    var head='<div class="carte" style="border-left:4px solid '+(S.test==="celpip"?"var(--celpip)":"var(--ielts)")+'">'+
+      '<div style="font-weight:800;color:var(--marine);margin-bottom:6px">'+esc(doc.t)+'</div>'+
+      (isL?'<button onclick="playExamAudio('+di+')" id="pa'+di+'" style="background:var(--marine);color:#fff;border:none;border-radius:10px;padding:9px 14px;font-size:.82rem;font-weight:800;cursor:pointer">🔊 Play audio ('+(2-(S._examPlays&&S._examPlays[di]||0))+' left)</button>':
+        '<div style="font-size:.9rem;line-height:1.65;margin-top:4px">'+doc.texte+'</div>')+'</div>';
+    var qs=doc.qs.map(function(q){
+      qNum++;var qi=qNum;var key2=key+"_"+qi;var rep=S.examAns[key2];
+      return '<div class="carte"><div style="font-weight:700;font-size:.92rem;margin-bottom:8px">Q'+qi+'. '+esc(q.q)+'</div>'+
+      q.o.map(function(o,oi){
+        var st='background:#fff;border:1.5px solid #DDD;color:var(--encre)';
+        if(rep!==undefined)st=(oi===rep)?'background:#E3EBF4;border:1.5px solid var(--marine);color:var(--marine)':'background:#fff;border:1.5px solid #EEE;color:var(--gris)';
+        return '<div onclick="S.examAns[\''+key2+'\']='+oi+';render()" style="'+st+';border-radius:10px;padding:9px 12px;margin-bottom:5px;font-size:.85rem;cursor:pointer">'+esc(o)+'</div>';
+      }).join("")+'</div>';
+    }).join("");
+    return head+qs;
+  }).join("");
+  return '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">'+
+  '<button onclick="quitExam()" style="background:#fff;border:1.5px solid var(--ligne);color:var(--gris);border-radius:10px;padding:8px 14px;font-size:.78rem;font-weight:800;cursor:pointer">← Quit</button>'+
+  '<div style="background:var(--marine);color:#fff;border-radius:20px;padding:7px 16px;font-weight:800;font-size:.95rem">⏱️ <span id="examClock">'+Math.floor(m.time/60)+':00</span></div></div>'+
+  '<div style="background:'+(S.test==="celpip"?"var(--celpipL)":"var(--ieltsL)")+';border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:.82rem;color:var(--gris)"><strong style="color:'+(S.test==="celpip"?"var(--celpip)":"var(--ielts)")+'">'+(S.test==="celpip"?"CELPIP":"IELTS")+' '+m.title+'</strong><br>'+esc(m.intro)+'</div>'+
+  body+
+  '<button class="btn btn-or btn-bloc" style="margin-top:6px" onclick="finishExamQCM(\''+key+'\',false)">✓ Finish and see my score</button>';
+}
+function playExamAudio(di){
+  S._examPlays=S._examPlays||{};var n=S._examPlays[di]||0;if(n>=2)return;
+  var doc=curExam(S.examView).docs[di];speakEn(doc.script);S._examPlays[di]=n+1;
+  var b=document.getElementById("pa"+di);if(b){var left=2-S._examPlays[di];b.textContent="🔊 Play audio ("+left+" left)";if(left<=0)b.disabled=true;}
+}
+function finishExamQCM(key,auto){
+  stopExamTimer();if(window.speechSynthesis)window.speechSynthesis.cancel();
+  var m=curExam(key);var total=0,score=0,qNum=0;
+  var review=m.docs.map(function(doc){
+    return '<div class="carte" style="border-left:4px solid '+(S.test==="celpip"?"var(--celpip)":"var(--ielts)")+'"><div style="font-weight:800;color:var(--marine)">'+esc(doc.t)+'</div></div>'+
+    doc.qs.map(function(q){
+      qNum++;total++;var rep=S.examAns[key+"_"+qNum];var ok=rep===q.b;if(ok)score++;
+      return '<div class="carte"><div style="font-weight:700;font-size:.9rem;margin-bottom:6px">Q'+qNum+'. '+esc(q.q)+'</div>'+
+      q.o.map(function(o,oi){
+        var st='background:#fff;border:1.5px solid #EEE;color:var(--gris)';
+        if(oi===q.b)st='background:var(--vertL);border:1.5px solid var(--vert);color:var(--vert)';
+        else if(oi===rep)st='background:var(--rougeL);border:1.5px solid var(--rouge);color:var(--rouge)';
+        return '<div style="'+st+';border-radius:10px;padding:8px 11px;margin-bottom:4px;font-size:.83rem">'+(oi===q.b?'✓ ':(oi===rep?'✗ ':''))+esc(o)+'</div>';
+      }).join("")+'<div style="background:#F7F4EC;border-radius:8px;padding:7px 10px;font-size:.78rem;color:var(--gris);margin-top:4px">💡 '+esc(q.x)+'</div></div>';
+    }).join("");
+  }).join("");
+  var pct=Math.round(score/total*100);var niv=niveauFromPct(pct);
+  S.examDoneList[S.test+"_"+key+"_"+(S.examVer||0)]=niv;sauver();
+  suivi("mock_"+key,S.test.toUpperCase()+" v"+((S.examVer||0)+1)+" · "+score+"/"+total+" ("+pct+"%) · "+niv+(auto?" · time up":""));
+  var head='<button onclick="quitExam()" style="background:#fff;border:1.5px solid var(--ligne);color:var(--gris);border-radius:10px;padding:8px 14px;font-size:.78rem;font-weight:800;cursor:pointer;margin-bottom:12px">← Back to Mock Exam</button>'+
+  '<div style="background:linear-gradient(135deg,var(--marine),var(--marine2));color:#fff;border-radius:16px;padding:20px;text-align:center;margin-bottom:14px">'+
+  (auto?'<div style="font-size:.78rem;color:var(--orL)">⏱️ Time is up!</div>':'')+
+  '<div style="font-size:.78rem;color:#B9C6D6">Your result — '+m.title+'</div>'+
+  '<div style="font-family:var(--police-titre);font-size:2rem;font-weight:900;margin:4px 0">'+score+' / '+total+'</div>'+
+  '<div style="display:inline-block;background:var(--or);color:var(--marine);border-radius:20px;padding:5px 16px;font-weight:900">'+niv+'</div>'+
+  '<div style="font-size:.8rem;color:#B9C6D6;margin-top:8px">'+pct+'% correct</div></div>';
+  /* ---- Answer Key table (official-booklet style) ---- */
+  var qN2=0;var akey='<div class="carte"><div style="font-family:var(--police-titre);font-weight:900;color:var(--marine);text-align:center;font-size:1.05rem">📋 Answer Key</div>'+
+  '<div style="text-align:center;font-size:.76rem;color:var(--gris);margin:2px 0 10px">The correct answer and why — section by section.</div>';
+  m.docs.forEach(function(doc){
+    akey+='<div style="font-weight:800;color:var(--marine);margin:10px 0 6px;border-left:4px solid var(--or);padding-left:9px;font-size:.86rem">'+esc(doc.t)+'</div>';
+    akey+='<table style="width:100%;border-collapse:collapse;font-size:.8rem">';
+    akey+='<tr><th style="text-align:left;padding:5px 6px;border-bottom:2px solid var(--marine);width:52px">Q</th><th style="text-align:left;padding:5px 6px;border-bottom:2px solid var(--marine);width:62px">Answer</th><th style="text-align:left;padding:5px 6px;border-bottom:2px solid var(--marine)">Why</th></tr>';
+    doc.qs.forEach(function(q){
+      qN2++;var rep=S.examAns[key+"_"+qN2];var ok=rep===q.b;var lettre=String.fromCharCode(65+q.b);
+      akey+='<tr style="background:'+(ok?'var(--vertL)':'var(--rougeL)')+'">'+
+        '<td style="padding:6px;border-bottom:1px solid var(--ligne);font-weight:800">'+qN2+' '+(ok?'✓':'✗')+'</td>'+
+        '<td style="padding:6px;border-bottom:1px solid var(--ligne);font-weight:900;color:var(--marine)">'+lettre+'</td>'+
+        '<td style="padding:6px;border-bottom:1px solid var(--ligne)">'+esc(q.x)+'</td></tr>';
+    });
+    akey+='</table>';
+  });
+  akey+='</div>';
+  document.getElementById("zone").innerHTML=head+akey+review+'<button class="btn btn-blanc btn-bloc" style="margin-top:10px" onclick="quitExam()">← Back to Mock Exam</button>';
+  window.scrollTo(0,0);
+}
+function quitExam(){stopExamTimer();if(window.speechSynthesis)window.speechSynthesis.cancel();S._examPlays={};S.examView=null;render();window.scrollTo(0,0);}
+
+/* ---- WRITING EXAM (AI-scored, timed) ---- */
+function renderExamWriting(){
+  var m=curExam("writing");var t=m.task;
+  return '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">'+
+  '<button onclick="quitExam()" style="background:#fff;border:1.5px solid var(--ligne);color:var(--gris);border-radius:10px;padding:8px 14px;font-size:.78rem;font-weight:800;cursor:pointer">← Quit</button>'+
+  '<div style="background:var(--marine);color:#fff;border-radius:20px;padding:7px 16px;font-weight:800;font-size:.95rem">⏱️ <span id="examClock">'+Math.floor(t.time/60)+':00</span></div></div>'+
+  '<div style="background:'+(S.test==="celpip"?"var(--celpipL)":"var(--ieltsL)")+';border-radius:14px;padding:14px 16px;margin-bottom:12px">'+
+  '<div style="font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:'+(S.test==="celpip"?"var(--celpip)":"var(--ielts)")+'">'+(S.test==="celpip"?"CELPIP":"IELTS")+' Writing — Mock</div>'+
+  '<div style="font-family:var(--police-titre);font-size:1.15rem;font-weight:900;color:var(--marine)">'+esc(t.t)+'</div></div>'+
+  card('<div class="sur">📋 Your task</div><div style="font-size:.88rem;margin-top:6px;white-space:pre-wrap;line-height:1.6">'+esc(t.prompt)+'</div>')+
+  '<div class="carte"><textarea id="wrArea" placeholder="Write your response here…" oninput="S.wrText=this.value;document.getElementById(\'wcx\').textContent=(this.value.trim()?this.value.trim().split(/\\s+/).length:0)+\' words\'">'+esc(S.wrText||"")+'</textarea>'+
+  '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">'+
+  '<span id="wcx" style="font-size:.74rem;color:var(--gris)">'+wordCount(S.wrText||"")+' words</span>'+
+  '<button class="btn btn-or" onclick="submitExamWriting(false)" '+(S.wrBusy?'disabled style="opacity:.5"':'')+'>'+(S.wrBusy?'Scoring…':'🎯 Submit')+'</button></div></div>'+
+  (S.wrFeedback?card('<div class="sur" style="color:var(--violet)">🤖 AI Examiner feedback</div><div style="font-size:.88rem;margin-top:6px;white-space:pre-wrap;line-height:1.6">'+esc(S.wrFeedback)+'</div>'+'<button class="btn btn-blanc btn-bloc" style="margin-top:10px" onclick="quitExam()">← Back to Mock Exam</button>'):'');
+}
+async function submitExamWriting(auto){
+  var m=curExam("writing");var t=m.task;var wc=wordCount(S.wrText);
+  if(!auto&&wc<40){alert("Write at least 40 words (aim for the full length!).");return;}
+  stopExamTimer();S.wrBusy=true;render();
+  var sys="You are an experienced "+(S.test==="celpip"?"CELPIP":"IELTS")+" writing examiner. Score this timed mock response against official criteria. "+
+    (S.test==="celpip"?"Give an estimated CLB level (1–12).":"Give an estimated band score (0–9, .5 steps).")+
+    " Format:\n\n📊 ESTIMATED "+(S.test==="celpip"?"CLB":"BAND")+": [score]\n\n✅ STRENGTHS:\n- [2–3 points]\n\n🔧 TO IMPROVE:\n- [2–3 specific points with a short rewrite example]\n\n💡 NEXT STEP: [one tip].\n\nEncouraging, honest, under 220 words, in English.";
+  try{
+    var data=await nellyAPI({model:"claude-sonnet-4-6",max_tokens:900,system:sys,messages:[{role:"user",content:"TASK ("+t.t+"):\n"+t.prompt+"\n\nRESPONSE ("+wc+" words"+(auto?", submitted automatically when time ended":"")+"):\n"+S.wrText}]});
+    var rep=(data.content||[]).filter(function(c){return c.type==="text";}).map(function(c){return c.text;}).join("").trim()||"(no feedback)";
+    S.wrFeedback=rep;S.writingCount=(S.writingCount||0)+1;
+    var mm=(rep.match(/CLB\s*\d+|Band\s*[\d.]+/i)||[])[0]||"done";
+    S.examDoneList[S.test+"_writing_"+(S.examVer||0)]=mm;sauver();
+    suivi("mock_writing",S.test.toUpperCase()+" v"+((S.examVer||0)+1)+" · "+wc+" words · "+mm+(auto?" · time up":""));
+  }catch(e){S.wrFeedback="📵 Connection issue ("+(e.message||"error")+"). Please try again.";}
+  S.wrBusy=false;render();
+}
+</script>
+
+<script>
+/* Content protection: block print & save shortcuts */
+document.addEventListener("keydown",function(e){
+  if((e.ctrlKey||e.metaKey)&&(e.key==="p"||e.key==="P"||e.key==="s"||e.key==="S")){
+    e.preventDefault();e.stopPropagation();
+    alert("\u26D4 Printing and saving this content is not allowed.\nProtected content \u2014 Cap CELPIP & IELTS \u00A9 Nelly Folefack.");
+    return false;
+  }
+},true);
+window.addEventListener("beforeprint",function(){document.body.style.display="none";setTimeout(function(){document.body.style.display="";},800);});
+</script>
+<style>@media print{body{display:none!important}}</style>
+</body>
+</html>
